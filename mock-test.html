@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TNPSC QUIZ HUB - Mock Test</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #172033;
+    }
+
+    header {
+        background: linear-gradient(135deg, #172554, #1d4ed8);
+        color: white;
+        text-align: center;
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    header p {
+        margin: 8px 0 0;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .back-btn {
+        display: inline-block;
+        text-decoration: none;
+        background: #172554;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .title h2 {
+        margin-bottom: 8px;
+        font-size: 28px;
+    }
+
+    .title p {
+        color: #64748b;
+    }
+
+    .quiz-box {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .top-info {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .question-number {
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 8px 12px;
+        border-radius: 8px;
+    }
+
+    .score {
+        background: #dcfce7;
+        color: #166534;
+        padding: 8px 12px;
+        border-radius: 8px;
+    }
+
+    #question {
+        font-size: 22px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .option {
+        width: 100%;
+        text-align: left;
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        padding: 15px;
+        margin: 9px 0;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .option:hover {
+        background: #eff6ff;
+        border-color: #3b82f6;
+    }
+
+    .option.correct {
+        background: #dcfce7;
+        border-color: #22c55e;
+        color: #166534;
+    }
+
+    .option.wrong {
+        background: #fee2e2;
+        border-color: #ef4444;
+        color: #991b1b;
+    }
+
+    .feedback {
+        margin-top: 18px;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        display: none;
+    }
+
+    .feedback.correct-text {
+        display: block;
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .feedback.wrong-text {
+        display: block;
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    #nextBtn {
+        display: none;
+        width: 100%;
+        margin-top: 18px;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: #1d4ed8;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    #nextBtn:hover {
+        background: #1e40af;
+    }
+
+    .result-box {
+        display: none;
+        background: white;
+        padding: 35px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .result-box h2 {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+
+    .final-score {
+        font-size: 42px;
+        font-weight: 800;
+        color: #1d4ed8;
+        margin: 20px 0;
+    }
+
+    .result-box button {
+        border: none;
+        padding: 13px 22px;
+        margin: 5px;
+        border-radius: 9px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .restart {
+        background: #1d4ed8;
+        color: white;
+    }
+
+    .home {
+        background: #e2e8f0;
+        color: #172033;
+    }
+
+    @media(max-width:600px) {
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        #question {
+            font-size: 19px;
+        }
+
+        .option {
+            font-size: 16px;
+        }
+
+        .quiz-box {
+            padding: 18px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>TNPSC QUIZ HUB</h1>
+    <p>LEARN • PRACTICE • TEST • IMPROVE</p>
+</header>
+
+<div class="container">
+
+    <a href="index.html" class="back-btn">← HOME</a>
+
+    <div class="title">
+        <h2>📝 TNPSC MOCK TEST</h2>
+        <p>தமிழ் • பொதுஅறிவு • வரலாறு • அரசியல் • அறிவியல் • கணிதம்</p>
+    </div>
+
+    <div class="quiz-box" id="quizBox">
+
+        <div class="top-info">
+            <div class="question-number" id="questionNumber">
+                Question 1 / 100
+            </div>
+
+            <div class="score" id="score">
+                Score: 0
+            </div>
+        </div>
+
+        <div id="question"></div>
+
+        <div id="options"></div>
+
+        <div id="feedback" class="feedback"></div>
+
+        <button id="nextBtn" onclick="nextQuestion()">
+            NEXT →
+        </button>
+
+    </div>
+
+    <div class="result-box" id="resultBox">
+
+        <h2>🎉 MOCK TEST COMPLETED!</h2>
+
+        <div class="final-score" id="finalScore">
+            0 / 100
+        </div>
+
+        <p id="resultMessage"></p>
+
+        <button class="restart" onclick="restartQuiz()">
+            🔄 RESTART
+        </button>
+
+        <button class="home" onclick="goHome()">
+            🏠 HOME
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+/* ================= தமிழ் ================= */
+
+{
+    q: "தமிழின் பழமையான இலக்கண நூல் எது?",
+    options: ["தொல்காப்பியம்", "நன்னூல்", "யாப்பருங்கலம்", "வீரசோழியம்"],
+    answer: 0
+},
+
+{
+    q: "திருக்குறளை இயற்றியவர் யார்?",
+    options: ["திருவள்ளுவர்", "கம்பர்", "இளங்கோவடிகள்", "சீத்தலைச் சாத்தனார்"],
+    answer: 0
+},
+
+{
+    q: "சிலப்பதிகாரத்தின் ஆசிரியர் யார்?",
+    options: ["இளங்கோவடிகள்", "கம்பர்", "திருவள்ளுவர்", "ஔவையார்"],
+    answer: 0
+},
+
+{
+    q: "தமிழின் முதல் எழுத்து எது?",
+    options: ["அ", "ஆ", "இ", "உ"],
+    answer: 0
+},
+
+{
+    q: "திருக்குறளில் மொத்தம் எத்தனை குறள்கள் உள்ளன?",
+    options: ["1330", "1200", "1500", "1000"],
+    answer: 0
+},
+
+{
+    q: "புறநானூறு எந்த தொகுப்பைச் சேர்ந்தது?",
+    options: ["எட்டுத்தொகை", "பத்துப்பாட்டு", "பதினெண்கீழ்க்கணக்கு", "ஐம்பெருங்காப்பியம்"],
+    answer: 0
+},
+
+{
+    q: "மணிமேகலையின் ஆசிரியர் யார்?",
+    options: ["சீத்தலைச் சாத்தனார்", "இளங்கோவடிகள்", "கம்பர்", "திருவள்ளுவர்"],
+    answer: 0
+},
+
+{
+    q: "கம்பராமாயணத்தை இயற்றியவர் யார்?",
+    options: ["கம்பர்", "ஒட்டக்கூத்தர்", "சேக்கிழார்", "புகழேந்தி"],
+    answer: 0
+},
+
+{
+    q: "தமிழில் உயிரெழுத்துகளின் எண்ணிக்கை எத்தனை?",
+    options: ["12", "18", "216", "247"],
+    answer: 0
+},
+
+{
+    q: "தமிழில் மெய்யெழுத்துகளின் எண்ணிக்கை எத்தனை?",
+    options: ["18", "12", "216", "247"],
+    answer: 0
+},
+
+{
+    q: "தமிழில் உயிர்மெய் எழுத்துகள் எத்தனை?",
+    options: ["216", "247", "18", "12"],
+    answer: 0
+},
+
+{
+    q: "தமிழில் மொத்த எழுத்துகள் எத்தனை?",
+    options: ["247", "216", "30", "250"],
+    answer: 0
+},
+
+{
+    q: "நான்மணிக்கடிகை எந்த தொகுப்பைச் சேர்ந்தது?",
+    options: ["பதினெண்கீழ்க்கணக்கு", "எட்டுத்தொகை", "பத்துப்பாட்டு", "ஐம்பெருங்காப்பியம்"],
+    answer: 0
+},
+
+{
+    q: "ஆத்திசூடியை இயற்றியவர் யார்?",
+    options: ["ஔவையார்", "கம்பர்", "திருவள்ளுவர்", "பாரதியார்"],
+    answer: 0
+},
+
+{
+    q: "தமிழ்த்தாய் வாழ்த்தை இயற்றியவர் யார்?",
+    options: ["மனோன்மணியம் சுந்தரனார்", "பாரதியார்", "பாரதிதாசன்", "கம்பர்"],
+    answer: 0
+},
+
+{
+    q: "சங்க இலக்கியம் எந்த காலத்தைச் சார்ந்தது?",
+    options: ["சங்க காலம்", "இடைக்காலம்", "நவீன காலம்", "காலனித்துவ காலம்"],
+    answer: 0
+},
+
+{
+    q: "குறிஞ்சி நிலத்தின் தெய்வம் யார்?",
+    options: ["முருகன்", "இந்திரன்", "வருணன்", "திருமால்"],
+    answer: 0
+},
+
+/* ================= GENERAL KNOWLEDGE ================= */
+
+{
+    q: "இந்தியாவின் தலைநகர் எது?",
+    options: ["புதுதில்லி", "மும்பை", "சென்னை", "கொல்கத்தா"],
+    answer: 0
+},
+
+{
+    q: "தமிழ்நாட்டின் தலைநகர் எது?",
+    options: ["சென்னை", "மதுரை", "கோயம்புத்தூர்", "திருச்சி"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் தேசிய விலங்கு எது?",
+    options: ["புலி", "சிங்கம்", "யானை", "மயில்"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் தேசிய பறவை எது?",
+    options: ["மயில்", "கிளி", "கழுகு", "குயில்"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் தேசிய மலர் எது?",
+    options: ["தாமரை", "ரோஜா", "மல்லிகை", "செம்பருத்தி"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் தேசிய மரம் எது?",
+    options: ["ஆலமரம்", "வேம்பு", "தென்னை", "மா"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் தேசிய பழம் எது?",
+    options: ["மாம்பழம்", "வாழைப்பழம்", "ஆப்பிள்", "ஆரஞ்சு"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் நாணயம் எது?",
+    options: ["ரூபாய்", "டாலர்", "யூரோ", "யென்"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவில் தற்போது எத்தனை மாநிலங்கள் உள்ளன?",
+    options: ["28", "29", "27", "30"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் மிகப்பெரிய மாநிலம் பரப்பளவில் எது?",
+    options: ["ராஜஸ்தான்", "மத்தியப் பிரதேசம்", "மகாராஷ்டிரா", "தமிழ்நாடு"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் சிறிய மாநிலம் பரப்பளவில் எது?",
+    options: ["கோவா", "சிக்கிம்", "திரிபுரா", "மணிப்பூர்"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் நீளமான நதி எது?",
+    options: ["கங்கை", "யமுனை", "கோதாவரி", "காவிரி"],
+    answer: 0
+},
+
+{
+    q: "தமிழ்நாட்டின் மாநில விலங்கு எது?",
+    options: ["வரையாடு", "புலி", "யானை", "சிங்கம்"],
+    answer: 0
+},
+
+{
+    q: "தமிழ்நாட்டின் மாநில மலர் எது?",
+    options: ["செங்காந்தள்", "தாமரை", "மல்லிகை", "ரோஜா"],
+    answer: 0
+},
+
+{
+    q: "தமிழ்நாட்டின் மாநில மரம் எது?",
+    options: ["பனை", "ஆலமரம்", "வேம்பு", "மா"],
+    answer: 0
+},
+
+{
+    q: "தமிழ்நாட்டின் மாநிலப் பறவை எது?",
+    options: ["மரகதப்புறா", "மயில்", "கிளி", "குயில்"],
+    answer: 0
+},
+
+/* ================= HISTORY ================= */
+
+{
+    q: "இந்திய தேசிய காங்கிரஸ் தொடங்கப்பட்ட ஆண்டு எது?",
+    options: ["1885", "1905", "1857", "1947"],
+    answer: 0
+},
+
+{
+    q: "இந்திய தேசிய காங்கிரஸின் முதல் தலைவர் யார்?",
+    options: ["W.C. பானர்ஜி", "காந்தி", "நேரு", "திலகர்"],
+    answer: 0
+},
+
+{
+    q: "இந்திய சுதந்திரம் பெற்ற ஆண்டு எது?",
+    options: ["1947", "1942", "1950", "1930"],
+    answer: 0
+},
+
+{
+    q: "இந்திய குடியரசு தினம் எப்போது?",
+    options: ["ஜனவரி 26", "ஆகஸ்ட் 15", "அக்டோபர் 2", "நவம்பர் 14"],
+    answer: 0
+},
+
+{
+    q: "இந்திய அரசியலமைப்பு ஏற்றுக்கொள்ளப்பட்ட நாள் எது?",
+    options: ["நவம்பர் 26, 1949", "ஜனவரி 26, 1950", "ஆகஸ்ட் 15, 1947", "அக்டோபர் 2, 1949"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் முதல் குடியரசுத் தலைவர் யார்?",
+    options: ["டாக்டர் ராஜேந்திர பிரசாத்", "நேரு", "சர்தார் பட்டேல்", "ராதாகிருஷ்ணன்"],
+    answer: 0
+},
+
+{
+    q: "வெள்ளையனே வெளியேறு இயக்கம் தொடங்கிய ஆண்டு?",
+    options: ["1942", "1930", "1919", "1947"],
+    answer: 0
+},
+
+{
+    q: "உப்பு சத்தியாகிரகம் நடைபெற்ற ஆண்டு?",
+    options: ["1930", "1920", "1942", "1919"],
+    answer: 0
+},
+
+{
+    q: "ஜாலியன் வாலாபாக் படுகொலை நடைபெற்ற ஆண்டு?",
+    options: ["1919", "1920", "1930", "1942"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் இரும்பு மனிதர் என்று அழைக்கப்படுபவர்?",
+    options: ["சர்தார் வல்லபாய் பட்டேல்", "நேரு", "காந்தி", "திலகர்"],
+    answer: 0
+},
+
+{
+    q: "தமிழ்நாட்டில் சுயமரியாதை இயக்கத்தைத் தொடங்கியவர்?",
+    options: ["பெரியார்", "ராஜாஜி", "காமராஜர்", "அண்ணா"],
+    answer: 0
+},
+
+{
+    q: "வ.உ.சிதம்பரனார் எதனுடன் தொடர்புடையவர்?",
+    options: ["சுதேசி கப்பல் நிறுவனம்", "உப்பு சத்தியாகிரகம்", "வெள்ளையனே வெளியேறு", "இந்திய தேசிய ராணுவம்"],
+    answer: 0
+},
+
+{
+    q: "வேலுநாச்சியார் எந்தப் பகுதியைச் சேர்ந்தவர்?",
+    options: ["சிவகங்கை", "மதுரை", "தஞ்சாவூர்", "சென்னை"],
+    answer: 0
+},
+
+{
+    q: "கட்டபொம்மன் எந்த இடத்தைச் சேர்ந்தவர்?",
+    options: ["பாஞ்சாலங்குறிச்சி", "மதுரை", "சிவகங்கை", "வேலூர்"],
+    answer: 0
+},
+
+{
+    q: "வேலூர் சிப்பாய் கிளர்ச்சி நடைபெற்ற ஆண்டு?",
+    options: ["1806", "1857", "1757", "1942"],
+    answer: 0
+},
+
+/* ================= POLITY ================= */
+
+{
+    q: "இந்திய அரசியலமைப்பின் தந்தை என்று அழைக்கப்படுபவர்?",
+    options: ["டாக்டர் B.R. அம்பேத்கர்", "காந்தி", "நேரு", "ராஜேந்திர பிரசாத்"],
+    answer: 0
+},
+
+{
+    q: "இந்திய அரசியலமைப்பில் அடிப்படை உரிமைகள் எந்தப் பகுதியில் உள்ளன?",
+    options: ["பகுதி III", "பகுதி I", "பகுதி IV", "பகுதி V"],
+    answer: 0
+},
+
+{
+    q: "அடிப்படை கடமைகள் எந்த அரசியலமைப்புத் திருத்தத்தின் மூலம் சேர்க்கப்பட்டன?",
+    options: ["42வது திருத்தம்", "44வது திருத்தம்", "73வது திருத்தம்", "74வது திருத்தம்"],
+    answer: 0
+},
+
+{
+    q: "இந்திய பாராளுமன்றம் எத்தனை அவைகளைக் கொண்டது?",
+    options: ["2", "3", "1", "4"],
+    answer: 0
+},
+
+{
+    q: "மக்களவையின் அதிகபட்ச பதவிக்காலம்?",
+    options: ["5 ஆண்டுகள்", "4 ஆண்டுகள்", "6 ஆண்டுகள்", "3 ஆண்டுகள்"],
+    answer: 0
+},
+
+{
+    q: "மாநிலங்களவையின் உறுப்பினரின் பதவிக்காலம்?",
+    options: ["6 ஆண்டுகள்", "5 ஆண்டுகள்", "4 ஆண்டுகள்", "3 ஆண்டுகள்"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் உயர்ந்த நீதிமன்றம் எது?",
+    options: ["உச்சநீதிமன்றம்", "உயர்நீதிமன்றம்", "மாவட்ட நீதிமன்றம்", "குடும்பநல நீதிமன்றம்"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவில் வாக்களிக்கும் குறைந்தபட்ச வயது?",
+    options: ["18", "21", "20", "25"],
+    answer: 0
+},
+
+{
+    q: "இந்திய தேர்தல் ஆணையம் எந்த வகையான அமைப்பு?",
+    options: ["அரசியலமைப்பு அமைப்பு", "தனியார் அமைப்பு", "சட்டப்பூர்வ அமைப்பு", "தன்னார்வ அமைப்பு"],
+    answer: 0
+},
+
+{
+    q: "இந்தியாவின் முதல் குடிமகன் யார்?",
+    options: ["குடியரசுத் தலைவர்", "பிரதமர்", "தலைமை நீதிபதி", "ஆளுநர்"],
+    answer: 0
+},
+
+/* ================= SCIENCE ================= */
+
+{
+    q: "நீரின் வேதியியல் வாய்ப்பாடு எது?",
+    options: ["H₂O", "CO₂", "O₂", "NaCl"],
+    answer: 0
+},
+
+{
+    q: "மனித உடலில் இரத்தத்தை பம்ப் செய்யும் உறுப்பு?",
+    options: ["இதயம்", "நுரையீரல்", "சிறுநீரகம்", "கல்லீரல்"],
+    answer: 0
+},
+
+{
+    q: "தாவரங்களில் ஒளிச்சேர்க்கை நடைபெறும் உறுப்பு?",
+    options: ["இலை", "வேர்", "தண்டு", "மலர்"],
+    answer: 0
+},
+
+{
+    q: "மனித உடலின் மிகப்பெரிய உறுப்பு?",
+    options: ["தோல்", "இதயம்", "கல்லீரல்", "மூளை"],
+    answer: 0
+},
+
+{
+    q: "இரத்தத்தில் ஆக்சிஜனை எடுத்துச் செல்வது?",
+    options: ["சிவப்பு இரத்த அணுக்கள்", "வெள்ளை இரத்த அணுக்கள்", "தட்டணுக்கள்", "பிளாஸ்மா"],
+    answer: 0
+},
+
+{
+    q: "விட்டமின் C குறைபாட்டால் ஏற்படும் நோய்?",
+    options: ["ஸ்கர்வி", "ரிக்கெட்ஸ்", "பெரிபெரி", "இரத்தசோகை"],
+    answer: 0
+},
+
+{
+    q: "விட்டமின் D குறைபாட்டால் ஏற்படும் நோய்?",
+    options: ["ரிக்கெட்ஸ்", "ஸ்கர்வி", "பெரிபெரி", "மலேரியா"],
+    answer: 0
+},
+
+{
+    q: "விசையின் SI அலகு எது?",
+    options: ["நியூட்டன்", "ஜூல்", "வாட்", "பாஸ்கல்"],
+    answer: 0
+},
+
+{
+    q: "வேலையின் SI அலகு எது?",
+    options: ["ஜூல்", "நியூட்டன்", "வாட்", "மீட்டர்"],
+    answer: 0
+},
+
+{
+    q: "மின்சார மின்னோட்டத்தின் SI அலகு?",
+    options: ["ஆம்பியர்", "வோல்ட்", "ஓம்", "வாட்"],
+    answer: 0
+},
+
+{
+    q: "மின்னழுத்தத்தின் SI அலகு?",
+    options: ["வோல்ட்", "ஆம்பியர்", "ஓம்", "ஜூல்"],
+    answer: 0
+},
+
+{
+    q: "எதிர்ப்பின் SI அலகு?",
+    options: ["ஓம்", "வோல்ட்", "ஆம்பியர்", "வாட்"],
+    answer: 0
+},
+
+{
+    q: "ஒளியின் வேகம் வெற்றிடத்தில் சுமார்?",
+    options: ["3 × 10⁸ m/s", "3 × 10⁶ m/s", "3 × 10⁵ m/s", "3 × 10³ m/s"],
+    answer: 0
+},
+
+{
+    q: "ஒலியானது எதில் பயணிக்க முடியாது?",
+    options: ["வெற்றிடம்", "நீர்", "காற்று", "திடப்பொருள்"],
+    answer: 0
+},
+
+{
+    q: "துருப்பிடித்தல் எந்த வகை மாற்றம்?",
+    options: ["வேதியியல் மாற்றம்", "இயற்பியல் மாற்றம்", "அணு மாற்றம்", "மீளக்கூடிய மாற்றம்"],
+    answer: 0
+},
+
+/* ================= MATHS ================= */
+
+{
+    q: "25 + 35 = ?",
+    options: ["60", "55", "65", "50"],
+    answer: 0
+},
+
+{
+    q: "100 - 45 = ?",
+    options: ["55", "65", "45", "50"],
+    answer: 0
+},
+
+{
+    q: "12 × 5 = ?",
+    options: ["60", "50", "70", "55"],
+    answer: 0
+},
+
+{
+    q: "144 ÷ 12 = ?",
+    options: ["12", "10", "14", "16"],
+    answer: 0
+},
+
+{
+    q: "200-ன் 10% எவ்வளவு?",
+    options: ["20", "10", "30", "25"],
+    answer: 0
+},
+
+{
+    q: "500-ன் 20% எவ்வளவு?",
+    options: ["100", "50", "150", "120"],
+    answer: 0
+},
+
+{
+    q: "2 : 4 என்ற விகிதத்தின் எளிய வடிவம்?",
+    options: ["1 : 2", "2 : 3", "1 : 4", "4 : 2"],
+    answer: 0
+},
+
+{
+    q: "ஒரு எண்ணின் 50% = 40 என்றால் அந்த எண்?",
+    options: ["80", "60", "90", "100"],
+    answer: 0
+},
+
+{
+    q: "ஒரு மணி நேரத்தில் எத்தனை நிமிடங்கள்?",
+    options: ["60", "30", "100", "120"],
+    answer: 0
+},
+
+{
+    q: "1 கிலோமீட்டர் = எத்தனை மீட்டர்?",
+    options: ["1000", "100", "10", "500"],
+    answer: 0
+},
+
+{
+    q: "ஒரு செவ்வகத்தின் பரப்பளவு காணும் சூத்திரம்?",
+    options: ["நீளம் × அகலம்", "2 × நீளம்", "நீளம் + அகலம்", "பக்கம் × 2"],
+    answer: 0
+},
+
+{
+    q: "சதுரத்தின் நான்கு பக்கங்களும் எப்படி இருக்கும்?",
+    options: ["சமம்", "வேறுபட்டவை", "இரண்டு மட்டும் சமம்", "மூன்று மட்டும் சமம்"],
+    answer: 0
+},
+
+{
+    q: "முக்கோணத்தின் கோணங்களின் கூட்டுத்தொகை?",
+    options: ["180°", "90°", "360°", "270°"],
+    answer: 0
+},
+
+{
+    q: "ஒரு வட்டத்தின் மையத்திலிருந்து சுற்றளவிற்கு உள்ள தூரம்?",
+    options: ["ஆரம்", "விட்டம்", "சுற்றளவு", "நாண்"],
+    answer: 0
+},
+
+{
+    q: "10, 20, 30 ஆகியவற்றின் சராசரி?",
+    options: ["20", "30", "15", "25"],
+    answer: 0
+},
+
+{
+    q: "5² இன் மதிப்பு?",
+    options: ["25", "10", "15", "20"],
+    answer: 0
+},
+
+{
+    q: "√64 = ?",
+    options: ["8", "6", "7", "9"],
+    answer: 0
+},
+
+{
+    q: "3 × 3 × 3 = ?",
+    options: ["27", "9", "18", "21"],
+    answer: 0
+},
+
+{
+    q: "ஒரு நாளில் எத்தனை மணி நேரம்?",
+    options: ["24", "12", "48", "20"],
+    answer: 0
+},
+
+{
+    q: "ஒரு வாரத்தில் எத்தனை நாட்கள்?",
+    options: ["7", "5", "6", "8"],
+    answer: 0
+},
+
+{
+    q: "75 + 25 = ?",
+    options: ["100", "90", "110", "95"],
+    answer: 0
+},
+
+{
+    q: "15 × 4 = ?",
+    options: ["60", "50", "45", "70"],
+    answer: 0
+},
+
+{
+    q: "1000 ÷ 10 = ?",
+    options: ["100", "10", "1000", "50"],
+    answer: 0
+},
+
+{
+    q: "ஒரு பொருளின் விலை ₹500. 10% தள்ளுபடி என்றால் தள்ளுபடி தொகை?",
+    options: ["₹50", "₹40", "₹60", "₹100"],
+    answer: 0
+},
+
+{
+    q: "ஒரு எண்ணின் 25% = 25 என்றால் அந்த எண்?",
+    options: ["100", "75", "50", "125"],
+    answer: 0
+}
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+function showQuestion() {
+
+    answered = false;
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        "Question " + (currentQuestion + 1) + " / " + questions.length;
+
+    document.getElementById("score").textContent =
+        "Score: " + score;
+
+    document.getElementById("question").textContent = q.q;
+
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    document.getElementById("feedback").className = "feedback";
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("nextBtn").style.display = "none";
+
+    q.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+        button.textContent = option;
+
+        button.onclick = function() {
+            checkAnswer(index, button);
+        };
+
+        optionsDiv.appendChild(button);
+    });
+}
+
+
+function checkAnswer(selectedIndex, selectedButton) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const q = questions[currentQuestion];
+    const allButtons = document.querySelectorAll(".option");
+
+    allButtons.forEach(button => {
+        button.disabled = true;
+    });
+
+    if (selectedIndex === q.answer) {
+
+        score++;
+
+        selectedButton.classList.add("correct");
+
+        document.getElementById("feedback").textContent =
+            "✅ Correct Answer!";
+
+        document.getElementById("feedback").className =
+            "feedback correct-text";
+
+    } else {
+
+        selectedButton.classList.add("wrong");
+
+        allButtons[q.answer].classList.add("correct");
+
+        document.getElementById("feedback").textContent =
+            "❌ Wrong Answer! Correct Answer: " + q.options[q.answer];
+
+        document.getElementById("feedback").className =
+            "feedback wrong-text";
+    }
+
+    document.getElementById("score").textContent =
+        "Score: " + score;
+
+    document.getElementById("nextBtn").style.display = "block";
+}
+
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        showResult();
+    }
+}
+
+
+function showResult() {
+
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "block";
+
+    document.getElementById("finalScore").textContent =
+        score + " / " + questions.length;
+
+    let message = "";
+
+    if (score >= 90) {
+        message = "🏆 Excellent! உங்கள் தயாரிப்பு மிகவும் சிறப்பாக உள்ளது!";
+    }
+    else if (score >= 75) {
+        message = "👏 Very Good! இன்னும் கொஞ்சம் practice செய்தால் super!";
+    }
+    else if (score >= 50) {
+        message = "👍 Good! இன்னும் practice செய்யுங்கள்.";
+    }
+    else {
+        message = "💪 Don't Give Up! மீண்டும் Mock Test எழுதுங்கள்.";
+    }
+
+    document.getElementById("resultMessage").textContent = message;
+}
+
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("resultBox").style.display = "none";
+    document.getElementById("quizBox").style.display = "block";
+
+    showQuestion();
+}
+
+
+function goHome() {
+
+    window.location.href = "index.html";
+}
+
+
+showQuestion();
+
+</script>
+
+</body>
+</html>

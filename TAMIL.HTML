@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>தமிழ் | TNPSC QUIZ HUB</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans Tamil", "Segoe UI", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f7ff;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #312e81,
+                    #6d28d9,
+                    #be185d
+                );
+
+            color: white;
+
+            padding: 55px 20px;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        header::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            background: rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+
+            top: -120px;
+            left: -70px;
+
+        }
+
+
+        header::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            background: rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+
+            bottom: -150px;
+            right: -80px;
+
+        }
+
+
+        .header-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 900px;
+
+            margin: auto;
+
+        }
+
+
+        .back-btn {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: white;
+
+            border: 1px solid rgba(255,255,255,0.4);
+
+            background: rgba(255,255,255,0.12);
+
+            padding: 8px 18px;
+
+            border-radius: 30px;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 22px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .back-btn:hover {
+
+            background: white;
+
+            color: #4c1d95;
+
+            transform: translateY(-3px);
+
+        }
+
+
+        .header-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        header h1 {
+
+            font-size: clamp(38px, 7vw, 65px);
+
+            font-weight: 950;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        header p {
+
+            margin-top: 10px;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #fef3c7;
+
+        }
+
+
+        .mini-text {
+
+            margin-top: 15px;
+
+            font-size: 14px;
+
+            color: rgba(255,255,255,0.85);
+
+        }
+
+
+
+        /* =========================
+           NAV
+        ========================= */
+
+        nav {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background: rgba(255,255,255,0.96);
+
+            backdrop-filter: blur(12px);
+
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+            padding: 12px 20px;
+
+        }
+
+
+        .nav-container {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        nav a {
+
+            text-decoration: none;
+
+            color: #172033;
+
+            font-weight: 800;
+
+            padding: 8px 16px;
+
+            border-radius: 30px;
+
+            transition: 0.3s;
+
+        }
+
+
+        nav a:hover {
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+        }
+
+
+
+        /* =========================
+           MAIN SECTION
+        ========================= */
+
+        main {
+
+            padding: 70px 20px;
+
+        }
+
+
+        .container {
+
+            max-width: 1150px;
+
+            margin: auto;
+
+        }
+
+
+        .section-heading {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+
+        }
+
+
+        .section-heading h2 {
+
+            font-size: 34px;
+
+            font-weight: 950;
+
+            color: #1e1b4b;
+
+        }
+
+
+        .section-heading p {
+
+            margin-top: 8px;
+
+            color: #667085;
+
+            font-weight: 600;
+
+        }
+
+
+        .title-line {
+
+            width: 75px;
+
+            height: 5px;
+
+            border-radius: 20px;
+
+            background: linear-gradient(
+                90deg,
+                #7c3aed,
+                #ec4899
+            );
+
+            margin: 15px auto;
+
+        }
+
+
+
+        /* =========================
+           TAMIL CARDS
+        ========================= */
+
+        .tamil-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 28px;
+
+        }
+
+
+        .tamil-card {
+
+            text-decoration: none;
+
+            color: inherit;
+
+            background: white;
+
+            border-radius: 28px;
+
+            padding: 35px 30px;
+
+            min-height: 245px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1px solid #e8eaf3;
+
+            box-shadow:
+                0 12px 35px rgba(30, 41, 90, 0.08);
+
+            transition: 0.35s;
+
+        }
+
+
+        .tamil-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 6px;
+
+            background: linear-gradient(
+                180deg,
+                #7c3aed,
+                #ec4899
+            );
+
+        }
+
+
+        .tamil-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+            height: 130px;
+
+            border-radius: 50%;
+
+            background: #f5f3ff;
+
+            right: -45px;
+            bottom: -50px;
+
+        }
+
+
+        .tamil-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 22px 50px rgba(76, 29, 149, 0.15);
+
+            border-color: #c4b5fd;
+
+        }
+
+
+        .card-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .card-icon {
+
+            width: 72px;
+            height: 72px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background: linear-gradient(
+                135deg,
+                #ede9fe,
+                #fce7f3
+            );
+
+            font-size: 36px;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.07);
+
+        }
+
+
+        .card-number {
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            color: #7c3aed;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .tamil-card h3 {
+
+            margin-top: 3px;
+
+            font-size: 26px;
+
+            font-weight: 950;
+
+            color: #1e1b4b;
+
+        }
+
+
+        .tamil-card p {
+
+            position: relative;
+
+            z-index: 2;
+
+            margin-top: 22px;
+
+            color: #5b6475;
+
+            font-size: 15px;
+
+            font-weight: 650;
+
+        }
+
+
+        .go-text {
+
+            position: relative;
+
+            z-index: 3;
+
+            display: inline-block;
+
+            margin-top: 18px;
+
+            color: #6d28d9;
+
+            font-weight: 900;
+
+            font-size: 14px;
+
+        }
+
+
+
+        /* =========================
+           INFO BOX
+        ========================= */
+
+        .info-box {
+
+            margin-top: 55px;
+
+            background: linear-gradient(
+                135deg,
+                #eef2ff,
+                #faf5ff
+            );
+
+            border: 1px solid #ddd6fe;
+
+            border-radius: 25px;
+
+            padding: 28px;
+
+            text-align: center;
+
+        }
+
+
+        .info-box h3 {
+
+            color: #312e81;
+
+            font-size: 22px;
+
+            font-weight: 900;
+
+        }
+
+
+        .info-box p {
+
+            margin-top: 8px;
+
+            color: #4b5563;
+
+            font-weight: 650;
+
+        }
+
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #111827;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+        }
+
+
+        footer h3 {
+
+            font-size: 22px;
+
+            font-weight: 900;
+
+        }
+
+
+        footer p {
+
+            margin-top: 5px;
+
+            color: #cbd5e1;
+
+            font-size: 14px;
+
+        }
+
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            header {
+
+                padding: 45px 20px;
+
+            }
+
+
+            header h1 {
+
+                font-size: 42px;
+
+            }
+
+
+            .tamil-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .tamil-card {
+
+                min-height: 220px;
+
+            }
+
+
+            .section-heading h2 {
+
+                font-size: 28px;
+
+            }
+
+
+            nav a {
+
+                font-size: 13px;
+
+                padding: 7px 11px;
+
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .card-top {
+
+                align-items: flex-start;
+
+            }
+
+
+            .card-icon {
+
+                width: 60px;
+                height: 60px;
+
+                font-size: 29px;
+
+            }
+
+
+            .tamil-card h3 {
+
+                font-size: 22px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <div class="header-content">
+
+            <a href="index.html" class="back-btn">
+                ← முகப்புப் பக்கம்
+            </a>
+
+            <div class="header-icon">
+                📖
+            </div>
+
+            <h1>
+                தமிழ்
+            </h1>
+
+            <p>
+                TNPSC தமிழ் பாடப்பிரிவு
+            </p>
+
+            <div class="mini-text">
+                கற்போம் • பயிற்சி செய்வோம் • தேர்வை வெல்வோம்
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav>
+
+        <div class="nav-container">
+
+            <a href="index.html">
+                🏠 முகப்பு
+            </a>
+
+            <a href="#tamil-sections">
+                📚 தமிழ் பாடங்கள்
+            </a>
+
+            <a href="#guide">
+                💡 வழிகாட்டி
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main id="tamil-sections">
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <h2>
+                    📚 தமிழ் பாடப்பிரிவுகள்
+                </h2>
+
+                <div class="title-line"></div>
+
+                <p>
+                    உங்களுக்கு தேவையான பாடப்பிரிவை தேர்வு செய்யுங்கள்
+                </p>
+
+            </div>
+
+
+
+            <!-- =========================
+                 FOUR TAMIL SECTIONS
+            ========================== -->
+
+            <div class="tamil-grid">
+
+
+                <!-- 01 இலக்கியம் -->
+
+                <a
+                    href="tamil-ilakkiyam.html"
+                    class="tamil-card"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-icon">
+                            📖
+                        </div>
+
+                        <div>
+
+                            <div class="card-number">
+                                TAMIL - 01
+                            </div>
+
+                            <h3>
+                                இலக்கியம்
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <p>
+                        சங்க இலக்கியம், காப்பியங்கள்,
+                        பக்தி இலக்கியம் மற்றும் முக்கியமான
+                        தமிழ் இலக்கியப் பகுதிகளை கற்றுக்கொள்ளலாம்.
+                    </p>
+
+
+                    <span class="go-text">
+                        பாடங்களைப் பார்க்க → 
+                    </span>
+
+                </a>
+
+
+
+                <!-- 02 இலக்கணம் -->
+
+                <a
+                    href="tamil-ilakkanam.html"
+                    class="tamil-card"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-icon">
+                            ✍️
+                        </div>
+
+                        <div>
+
+                            <div class="card-number">
+                                TAMIL - 02
+                            </div>
+
+                            <h3>
+                                இலக்கணம்
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <p>
+                        தமிழ் இலக்கணத்தின் முக்கியமான
+                        விதிகள், சொல் வகைகள், எழுத்து,
+                        சொல் மற்றும் பொருள் சார்ந்த பகுதிகளை
+                        பயிற்சி செய்யலாம்.
+                    </p>
+
+
+                    <span class="go-text">
+                        பாடங்களைப் பார்க்க →
+                    </span>
+
+                </a>
+
+
+
+                <!-- 03 செய்யுள் -->
+
+                <a
+                    href="tamil-seyyul.html"
+                    class="tamil-card"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-icon">
+                            🎵
+                        </div>
+
+                        <div>
+
+                            <div class="card-number">
+                                TAMIL - 03
+                            </div>
+
+                            <h3>
+                                செய்யுள்
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <p>
+                        TNPSC தேர்வுக்கு முக்கியமான
+                        செய்யுள் பகுதிகள், பாடல்கள்,
+                        ஆசிரியர்கள் மற்றும் தொடர்புடைய
+                        கேள்விகளை பயிற்சி செய்யலாம்.
+                    </p>
+
+
+                    <span class="go-text">
+                        பாடங்களைப் பார்க்க →
+                    </span>
+
+                </a>
+
+
+
+                <!-- 04 உரைநடை -->
+
+                <a
+                    href="tamil-urainadai.html"
+                    class="tamil-card"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-icon">
+                            📚
+                        </div>
+
+                        <div>
+
+                            <div class="card-number">
+                                TAMIL - 04
+                            </div>
+
+                            <h3>
+                                உரைநடை / பாடப்பிரிவுகள்
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <p>
+                        உரைநடை, பாடப்பகுதிகள் மற்றும்
+                        TNPSC தேர்வில் கேட்கப்படும் முக்கியமான
+                        தமிழ் பாடப்பிரிவுகளை படித்து
+                        பயிற்சி செய்யலாம்.
+                    </p>
+
+
+                    <span class="go-text">
+                        பாடங்களைப் பார்க்க →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 INFO
+            ========================== -->
+
+            <div class="info-box" id="guide">
+
+                <h3>
+                    🎯 எப்படி தொடர வேண்டும்?
+                </h3>
+
+                <p>
+                    முதலில் ஒரு பாடப்பிரிவை தேர்வு செய்யுங்கள்.
+                    அடுத்த பக்கத்தில் அந்தப் பாடத்தின்
+                    தலைப்புகள் வரும். பின்னர் உங்களுக்கு
+                    தேவையான Test-ஐ தேர்வு செய்து
+                    கேள்விகளுக்கு பதிலளிக்கலாம்.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <h3>
+            TNPSC QUIZ HUB
+        </h3>
+
+        <p>
+            LEARN • PRACTICE • TEST • IMPROVE
+        </p>
+
+        <p>
+            © 2026 TNPSC QUIZ HUB
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

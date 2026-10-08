@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TNPSC QUIZ HUB</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans Tamil", "Segoe UI", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f7ff;
+            color: #172033;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           TOP HEADER
+        ========================= */
+
+        header {
+            min-height: 500px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(31, 41, 105, 0.92),
+                    rgba(88, 28, 135, 0.82),
+                    rgba(190, 24, 93, 0.70)
+                ),
+                url("tnpsc-success.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 50px 20px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            top: -100px;
+            left: -100px;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            bottom: -120px;
+            right: -80px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.35);
+            color: white;
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-content h1 {
+            color: white;
+            font-size: clamp(42px, 7vw, 78px);
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 8px 25px rgba(0,0,0,0.30);
+        }
+
+        .hero-content h2 {
+            color: #ffe082;
+            font-size: clamp(18px, 3vw, 28px);
+            margin-top: 8px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            color: white;
+            font-size: 19px;
+            margin-top: 22px;
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: #ffffff;
+            color: #4c1d95;
+        }
+
+        .secondary-btn {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.22);
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(15px);
+
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+            padding: 14px 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #172033;
+            font-weight: 800;
+            padding: 9px 16px;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #ede9fe;
+            color: #6d28d9;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           COMMON SECTION
+        ========================= */
+
+        section {
+            padding: 75px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            font-weight: 900;
+            color: #172033;
+        }
+
+        .section-title p {
+            margin-top: 8px;
+            color: #5b6475;
+            font-weight: 600;
+        }
+
+        .title-line {
+            width: 75px;
+            height: 5px;
+            background: linear-gradient(90deg,#7c3aed,#ec4899);
+            margin: 15px auto;
+            border-radius: 10px;
+        }
+
+
+        /* =========================
+           SUBJECT CARDS
+        ========================= */
+
+        #subjects {
+            background: #f8faff;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .subject-card {
+            text-decoration: none;
+            color: inherit;
+
+            background: white;
+            border-radius: 22px;
+            padding: 30px 20px;
+
+            min-height: 190px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            border: 1px solid #e8eaf3;
+
+            box-shadow: 0 10px 30px rgba(36, 42, 72, 0.07);
+
+            transition: 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg,#7c3aed,#ec4899);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(76, 29, 149, 0.15);
+            border-color: #c4b5fd;
+        }
+
+        .subject-icon {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f3e8ff;
+            border-radius: 18px;
+
+            font-size: 31px;
+
+            margin-bottom: 15px;
+        }
+
+        .subject-card h3 {
+            font-size: 19px;
+            font-weight: 900;
+            color: #1e1b4b;
+        }
+
+        .subject-card span {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #667085;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           WHY TNPSC QUIZ HUB
+        ========================= */
+
+        #about {
+            background: #eef2ff;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .about-card {
+            background: white;
+            padding: 30px;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .about-card .icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .about-card h3 {
+            color: #312e81;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .about-card p {
+            color: #5b6475;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           PROFESSORS
+        ========================= */
+
+        #guidance {
+            background: #fffafc;
+        }
+
+        .professor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .professor-card {
+            background: white;
+            border-radius: 28px;
+            padding: 35px 30px;
+
+            border: 1px solid #f0dce7;
+
+            box-shadow: 0 15px 40px rgba(60, 30, 60, 0.08);
+
+            text-align: center;
+
+            transition: 0.35s;
+        }
+
+        .professor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 50px rgba(76,29,149,0.14);
+        }
+
+        .professor-icon {
+            width: 82px;
+            height: 82px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(135deg,#ede9fe,#fce7f3);
+
+            font-size: 38px;
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .professor-name {
+            font-size: 25px;
+            font-weight: 950;
+            color: #312e81;
+            margin-bottom: 10px;
+        }
+
+        .degree {
+            font-size: 17px;
+            font-weight: 800;
+            color: #374151;
+            margin-bottom: 20px;
+        }
+
+        /* Separate Assistant Professor block */
+
+        .designation {
+            display: inline-block;
+
+            background: linear-gradient(135deg,#7c3aed,#db2777);
+            color: white;
+
+            padding: 10px 22px;
+
+            border-radius: 50px;
+
+            font-size: 15px;
+            font-weight: 900;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 20px;
+
+            box-shadow: 0 8px 20px rgba(124,58,237,0.22);
+        }
+
+        .professor-details {
+            background: #f8f7ff;
+            border-radius: 18px;
+            padding: 20px 15px;
+
+            color: #273043;
+
+            font-size: 15px;
+            font-weight: 800;
+
+            border: 1px solid #ebe7ff;
+        }
+
+        .professor-details div {
+            margin: 5px 0;
+        }
+
+
+        /* =========================
+           MOTIVATION
+        ========================= */
+
+        #motivation {
+            background: linear-gradient(135deg,#312e81,#581c87,#9d174d);
+            color: white;
+            text-align: center;
+        }
+
+        .motivation-box {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .motivation-box h2 {
+            font-size: 34px;
+            font-weight: 900;
+        }
+
+        .motivation-box p {
+            margin-top: 18px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .quote {
+            margin-top: 25px;
+            padding: 18px 25px;
+
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.20);
+
+            border-radius: 18px;
+
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .footer-small {
+            margin-top: 12px;
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .subject-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                min-height: 440px;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            nav {
+                padding: 10px;
+            }
+
+            nav a {
+                font-size: 13px;
+                padding: 7px 11px;
+            }
+
+            section {
+                padding: 55px 15px;
+            }
+
+            .subject-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .professor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .professor-name {
+                font-size: 21px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HERO HEADER
+    ========================== -->
+
+    <header id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🎯 TNPSC Preparation Platform
+            </div>
+
+            <h1>TNPSC QUIZ HUB</h1>
+
+            <h2>LEARN • PRACTICE • TEST • IMPROVE</h2>
+
+            <p>
+                தொடர்ந்து கற்போம்… தொடர்ந்து பயிற்சி செய்வோம்…
+                வெற்றியை நம் வசமாக்குவோம்!
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#subjects" class="hero-btn primary-btn">
+                    🚀 Start Learning
+                </a>
+
+                <a href="#guidance" class="hero-btn secondary-btn">
+                    👩‍🏫 Our Guidance
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav>
+
+        <div class="nav-container">
+
+            <a href="#home">🏠 முகப்பு</a>
+
+            <a href="#subjects">📚 பாடங்கள்</a>
+
+            <a href="#about">💡 எங்களைப் பற்றி</a>
+
+            <a href="#guidance">👩‍🏫 வழிகாட்டும் பேராசிரியர்கள்</a>
+
+            <a href="#motivation">🔥 Motivation</a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         SUBJECTS
+    ========================== -->
+
+    <section id="subjects">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>📚 TNPSC பாடப்பிரிவுகள்</h2>
+
+                <div class="title-line"></div>
+
+                <p>
+                    உங்களுக்கு தேவையான பாடத்தை தேர்வு செய்து
+                    அடுத்த பக்கத்திற்கு செல்லுங்கள்
+                </p>
+
+            </div>
+
+
+            <div class="subject-grid">
+
+
+                <!-- TAMIL -->
+
+                <a href="tamil.html" class="subject-card">
+
+                    <div class="subject-icon">
+                        📖
+                    </div>
+
+                    <h3>தமிழ்</h3>
+
+                    <span>
+                        இலக்கியம் • இலக்கணம் • செய்யுள்
+                    </span>
+
+                </a>
+
+
+
+                <!-- GENERAL KNOWLEDGE -->
+
+                <a href="general.html" class="subject-card">
+
+                    <div class="subject-icon">
+                        🌍
+                    </div>
+
+                    <h3>பொதுத்தறிவு</h3>
+
+                    <span>
+                        இந்தியா • தமிழ்நாடு • உலகம்
+                    </span>
+
+                </a>
+
+
+
+                <!-- HISTORY -->
+
+                <a href="history.html" class="subject-card">
+
+                    <div class="subject-icon">
+                        🏛️
+                    </div>
+
+                    <h3>வரலாறு</h3>
+
+                    <span>
+                        இந்தியா • தமிழ்நாடு • உலக வரலாறு
+                    </span>
+
+                </a>
+
+
+
+                <!-- POLITY -->
+
+                <a href="polity.html" class="subject-card">
+
+                    <div class="subject-icon">
+                        ⚖️
+                    </div>
+
+                    <h3>அரசியலமைப்பு</h3>
+
+                    <span>
+                        அரசியலமைப்பு • அரசு • தேர்தல்
+                    </span>
+
+                </a>
+
+
+
+                <!-- SCIENCE -->
+
+                <a href="science.html" class="subject-card">
+
+                    <div class="subject-icon">
+                        🔬
+                    </div>
+
+                    <h3>அறிவியல்</h3>
+
+                    <span>
+                        இயற்பியல் • வேதியியல் • உயிரியல்
+                    </span>
+
+                </a>
+
+
+
+                <!-- MATHS -->
+
+                <a href="maths.html" class="subject-card">
+
+                    <div class="subject-icon">
+                        🧮
+                    </div>
+
+                    <h3>கணிதம்</h3>
+
+                    <span>
+                        எண்கள் • சதவீதம் • விகிதம்
+                    </span>
+
+                </a>
+
+
+
+                <!-- CURRENT AFFAIRS -->
+
+                <a href="current-affairs.html" class="subject-card">
+
+                    <div class="subject-icon">
+                        📰
+                    </div>
+
+                    <h3>நடப்பு நிகழ்வுகள்</h3>
+
+                    <span>
+                        வாராந்திர Current Affairs
+                    </span>
+
+                </a>
+
+
+
+                <!-- MOCK TEST -->
+
+                <a href="mock-test.html" class="subject-card">
+
+                    <div class="subject-icon">
+                        📝
+                    </div>
+
+                    <h3>Mock Test</h3>
+
+                    <span>
+                        TNPSC முழுமையான தேர்வுகள்
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>✨ ஏன் TNPSC QUIZ HUB?</h2>
+
+                <div class="title-line"></div>
+
+                <p>
+                    TNPSC தேர்வுக்கான உங்களுடைய தினசரி பயிற்சி தளம்
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+
+                <div class="about-card">
+
+                    <div class="icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        Learn
+                    </h3>
+
+                    <p>
+                        முக்கியமான பாடங்களை எளிமையாக கற்றுக்கொள்ளுங்கள்.
+                    </p>
+
+                </div>
+
+
+                <div class="about-card">
+
+                    <div class="icon">
+                        🎯
+                    </div>
+
+                    <h3>
+                        Practice
+                    </h3>
+
+                    <p>
+                        தொடர்ந்து Quiz மற்றும் கேள்விகள் மூலம் பயிற்சி செய்யுங்கள்.
+                    </p>
+
+                </div>
+
+
+                <div class="about-card">
+
+                    <div class="icon">
+                        🏆
+                    </div>
+
+                    <h3>
+                        Improve
+                    </h3>
+
+                    <p>
+                        உங்கள் மதிப்பெண்களை உயர்த்தி வெற்றியை நோக்கி செல்லுங்கள்.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PROFESSOR GUIDANCE
+    ========================== -->
+
+    <section id="guidance">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>👩‍🏫 வழிகாட்டும் பேராசிரியர்கள்</h2>
+
+                <div class="title-line"></div>
+
+                <p>
+                    கல்வி மற்றும் தேர்வு தயாரிப்பில் வழிகாட்டும் பேராசிரியர்கள்
+                </p>
+
+            </div>
+
+
+
+            <div class="professor-grid">
+
+
+                <!-- PROFESSOR 1 -->
+
+                <div class="professor-card">
+
+                    <div class="professor-icon">
+                        👩‍🏫
+                    </div>
+
+                    <div class="professor-name">
+                        Dr.V.BHUVANESWARI..
+                    </div>
+
+                    <div class="degree">
+                        M.Com(CA)..M.Phil.., MBA..,Ph.D..
+                    </div>
+
+                    <div class="designation">
+                        ASSISTANT PROFESSOR
+                    </div>
+
+                    <div class="professor-details">
+
+                        <div>
+                            PG DEPARTMENT OF COMMERCE (CA)
+                        </div>
+
+                        <div>
+                            VELLALAR COLLEGE FOR WOMEN (AUTONOMOUS)
+                        </div>
+
+                        <div>
+                            ERODE - 12
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PROFESSOR 2 -->
+
+                <div class="professor-card">
+
+                    <div class="professor-icon">
+                        👩‍🏫
+                    </div>
+
+                    <div class="professor-name">
+                        Dr.S.POONGODI..
+                    </div>
+
+                    <div class="degree">
+                        M.Com(CA)..B.Ed..,M.Phil.,Ph.D..
+                    </div>
+
+                    <div class="designation">
+                        ASSISTANT PROFESSOR
+                    </div>
+
+                    <div class="professor-details">
+
+                        <div>
+                            PG DEPARTMENT OF COMMERCE (CA)
+                        </div>
+
+                        <div>
+                            VELLALAR COLLEGE FOR WOMEN (AUTONOMOUS)
+                        </div>
+
+                        <div>
+                            ERODE - 12
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MOTIVATION
+    ========================== -->
+
+    <section id="motivation">
+
+        <div class="motivation-box">
+
+            <h2>
+                🔥 உங்கள் வெற்றி… உங்கள் கையில்!
+            </h2>
+
+            <p>
+                தினமும் கொஞ்சம் கற்போம்.
+                தினமும் கொஞ்சம் பயிற்சி செய்வோம்.
+                தினமும் நம்மை நாமே மேம்படுத்திக் கொள்வோம்.
+            </p>
+
+            <div class="quote">
+                “தொடர்ந்து கற்போம்… தொடர்ந்து பயிற்சி செய்வோம்…
+                வெற்றியை நம் வசமாக்குவோம்!”
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <h3>
+            TNPSC QUIZ HUB
+        </h3>
+
+        <p>
+            LEARN • PRACTICE • TEST • IMPROVE
+        </p>
+
+        <p class="footer-small">
+            © 2026 TNPSC QUIZ HUB • All Rights Reserved
+        </p>
+
+    </footer>
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

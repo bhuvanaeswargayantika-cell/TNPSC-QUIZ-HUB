@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Current Affairs - TNPSC QUIZ HUB</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Tamil",sans-serif;
+  background:#f3f6fb;
+  color:#172033;
+}
+
+header{
+  background:linear-gradient(135deg,#102a43,#1d4ed8);
+  color:white;
+  text-align:center;
+  padding:28px 15px;
+}
+
+header h1{
+  margin:0;
+  font-size:30px;
+}
+
+header p{
+  margin:8px 0 0;
+  letter-spacing:2px;
+  font-size:14px;
+}
+
+.back{
+  display:inline-block;
+  margin:18px;
+  padding:10px 18px;
+  background:white;
+  color:#1d4ed8;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.title h2{
+  color:#102a43;
+}
+
+.title p{
+  color:#64748b;
+}
+
+.weeks{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px;
+}
+
+.week-btn{
+  border:0;
+  padding:18px 12px;
+  border-radius:15px;
+  background:white;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+  color:#172033;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  transition:.2s;
+}
+
+.week-btn:hover{
+  transform:translateY(-3px);
+  background:#eaf1ff;
+}
+
+.quiz{
+  display:none;
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.qno{
+  color:#1d4ed8;
+}
+
+.score{
+  color:#15803d;
+}
+
+.question{
+  font-size:20px;
+  font-weight:bold;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.option{
+  width:100%;
+  padding:15px;
+  margin:8px 0;
+  border:2px solid #dbe2ea;
+  border-radius:12px;
+  background:#f8fafc;
+  text-align:left;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.option:hover{
+  background:#eef4ff;
+}
+
+.correct{
+  background:#dcfce7 !important;
+  border-color:#16a34a !important;
+  color:#166534;
+}
+
+.wrong{
+  background:#fee2e2 !important;
+  border-color:#dc2626 !important;
+  color:#991b1b;
+}
+
+.feedback{
+  min-height:30px;
+  margin:15px 0;
+  font-size:18px;
+  font-weight:bold;
+}
+
+button.action{
+  border:0;
+  padding:12px 20px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:5px;
+}
+
+.next{
+  background:#1d4ed8;
+  color:white;
+}
+
+.backset{
+  background:#64748b;
+  color:white;
+}
+
+.result{
+  display:none;
+  background:white;
+  text-align:center;
+  padding:35px 20px;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
+
+.final{
+  font-size:42px;
+  font-weight:bold;
+  color:#1d4ed8;
+  margin:15px;
+}
+
+.restart{
+  background:#15803d;
+  color:white;
+}
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:24px;
+  }
+
+  .question{
+    font-size:18px;
+  }
+
+  .quiz{
+    padding:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>TNPSC QUIZ HUB</h1>
+  <p>LEARN • PRACTICE • TEST • IMPROVE</p>
+</header>
+
+<a href="index.html" class="back">← HOME</a>
+
+<div class="container">
+
+<div class="title">
+  <h2>📰 CURRENT AFFAIRS</h2>
+  <p>June 2026 → October 2026</p>
+</div>
+
+<div class="weeks" id="weeks"></div>
+
+<div class="quiz" id="quiz">
+
+  <div class="top">
+    <div class="qno" id="qno"></div>
+    <div class="score" id="score"></div>
+  </div>
+
+  <div class="question" id="question"></div>
+
+  <div id="options"></div>
+
+  <div class="feedback" id="feedback"></div>
+
+  <button
+    class="action next"
+    id="next"
+    onclick="nextQuestion()"
+    style="display:none;">
+    Next →
+  </button>
+
+  <button
+    class="action backset"
+    onclick="backToWeeks()">
+    ← Back to Weeks
+  </button>
+
+</div>
+
+<div class="result" id="result">
+
+  <h2>🎉 Week Completed!</h2>
+
+  <div class="final" id="final"></div>
+
+  <p id="message"></p>
+
+  <button
+    class="action restart"
+    onclick="restartQuiz()">
+    🔄 Restart
+  </button>
+
+  <button
+    class="action backset"
+    onclick="backToWeeks()">
+    ← Back to Weeks
+  </button>
+
+</div>
+
+</div>
+
+<script>
+
+/*
+====================================================
+CURRENT AFFAIRS
+June 2026 → October 2026
+7-day weekly structure
+====================================================
+*/
+
+const weeks = [
+
+/* ================= JUNE ================= */
+
+{
+  title:"June Week 1",
+  date:"June 1 – 7, 2026",
+  questions:[
+
+    {
+      q:"2026-ல் இந்தியாவின் 100வது Ramsar தளமாக அறிவிக்கப்பட்டது எது?",
+      options:[
+        "Surha Tal",
+        "Chilika Lake",
+        "Loktak Lake",
+        "Wular Lake"
+      ],
+      answer:0
+    },
+
+    {
+      q:"2026 Nilgiri Tahr கணக்கெடுப்பில் சுமார் எத்தனை Nilgiri Tahr பதிவானது?",
+      options:[
+        "1,164",
+        "1,264",
+        "1,364",
+        "1,464"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Nilgiri Tahr-ன் அறிவியல் பெயர் என்ன?",
+      options:[
+        "Nilgiritragus hylocrius",
+        "Bos gaurus",
+        "Panthera tigris",
+        "Elephas maximus"
+      ],
+      answer:0
+    },
+
+    {
+      q:"2026 World Environment Day எப்போது அனுசரிக்கப்பட்டது?",
+      options:[
+        "June 3",
+        "June 4",
+        "June 5",
+        "June 6"
+      ],
+      answer:2
+    },
+
+    {
+      q:"E85 fuel-ல் ethanol சதவீதம் எவ்வளவு?",
+      options:[
+        "50%",
+        "65%",
+        "75%",
+        "85%"
+      ],
+      answer:3
+    },
+
+    {
+      q:"2026 FIFA World Cup எந்த மூன்று நாடுகளில் நடைபெறுகிறது?",
+      options:[
+        "Canada, Mexico, USA",
+        "Brazil, Argentina, Chile",
+        "France, Germany, Italy",
+        "India, Nepal, Bhutan"
+      ],
+      answer:0
+    },
+
+    {
+      q:"2026 FIFA World Cup எப்போது தொடங்குகிறது?",
+      options:[
+        "June 5",
+        "June 8",
+        "June 11",
+        "June 15"
+      ],
+      answer:2
+    }
+
+  ]
+},
+
+{
+  title:"June Week 2",
+  date:"June 8 – 14, 2026",
+  questions:[
+
+    {
+      q:"2026 June இரண்டாவது வாரத்தில் இந்தியா–பிரான்ஸ் ஒத்துழைப்பில் முக்கியமாக பேசப்பட்டது எது?",
+      options:[
+        "Trusted AI",
+        "Coal mining",
+        "River linking",
+        "Postal reforms"
+      ],
+      answer:0
+    },
+
+    {
+      q:"CISF எத்தனை personnel-ஐ drone மற்றும் counter-drone operations-ல் பயிற்றுவித்தது?",
+      options:[
+        "5,120",
+        "6,120",
+        "7,120",
+        "8,120"
+      ],
+      answer:2
+    },
+
+    {
+      q:"INS Sharda June 2026-ல் எந்த நாட்டின் Colombo துறைமுகத்திற்குச் சென்றது?",
+      options:[
+        "Sri Lanka",
+        "Maldives",
+        "Indonesia",
+        "Myanmar"
+      ],
+      answer:0
+    },
+
+    {
+      q:"India-France innovation event-ன் பெயர் என்ன?",
+      options:[
+        "Bharat Innovates 2026",
+        "India Tech 2026",
+        "France Connect 2026",
+        "Digital Bharat 2026"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Tamil Nadu-ன் Jal Jeevan Mission 2.0 initiative எந்த பெயரில் குறிப்பிடப்பட்டது?",
+      options:[
+        "Uyir Neer Iyakkam",
+        "Neer Tamil Nadu",
+        "Kudineer 2.0",
+        "Namma Neer"
+      ],
+      answer:0
+    },
+
+    {
+      q:"June 14 அன்று முக்கியமாக பேசப்பட்ட இந்தியா–இலங்கை ஒத்துழைப்பு எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Maritime cooperation",
+        "Space tourism",
+        "Nuclear farming",
+        "Railway privatisation"
+      ],
+      answer:0
+    },
+
+    {
+      q:"CIC எந்த அமைப்பின் answer-sheet tender details-ஐ வெளியிட உத்தரவிட்டது?",
+      options:[
+        "CBSE",
+        "UPSC",
+        "TNPSC",
+        "NTA"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"June Week 3",
+  date:"June 15 – 21, 2026",
+  questions:[
+
+    {
+      q:"June 2026-ல் India-வின் forex reserves சுமார் எவ்வளவு என தெரிவிக்கப்பட்டது?",
+      options:[
+        "$582.3 billion",
+        "$682.3 billion",
+        "$782.3 billion",
+        "$882.3 billion"
+      ],
+      answer:1
+    },
+
+    {
+      q:"இந்தியா எந்த wholesale inflation index-ஐ மாற்றுவதற்கான நடவடிக்கையை எடுத்தது?",
+      options:[
+        "CPI",
+        "PPI",
+        "IIP",
+        "GDP"
+      ],
+      answer:1
+    },
+
+    {
+      q:"May 2026 retail inflation சுமார் எவ்வளவு என தெரிவிக்கப்பட்டது?",
+      options:[
+        "2.9%",
+        "3.9%",
+        "4.9%",
+        "5.9%"
+      ],
+      answer:1
+    },
+
+    {
+      q:"India–Slovakia உறவுகளில் June 2026-ல் எத்தனை agreements கையெழுத்தானதாக தெரிவிக்கப்பட்டது?",
+      options:[
+        "7",
+        "9",
+        "11",
+        "13"
+      ],
+      answer:2
+    },
+
+    {
+      q:"NLCIL மற்றும் CSIR-CECRI MoU எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Rare earth extraction",
+        "Railway safety",
+        "School education",
+        "Tourism"
+      ],
+      answer:0
+    },
+
+    {
+      q:"தமிழ்நாட்டில் June 2026-ல் மூடப்பட்ட TASMAC கடைகளின் எண்ணிக்கை சுமார்?",
+      options:[
+        "517",
+        "617",
+        "717",
+        "817"
+      ],
+      answer:2
+    },
+
+    {
+      q:"India-வின் FY 2025-26 GDP growth revised rate எவ்வளவு?",
+      options:[
+        "6.7%",
+        "7.1%",
+        "7.7%",
+        "8.2%"
+      ],
+      answer:2
+    }
+
+  ]
+},
+
+{
+  title:"June Week 4",
+  date:"June 22 – 28, 2026",
+  questions:[
+
+    {
+      q:"Tiruvallur ammonia leak எந்த வகை தொழிற்சாலையுடன் தொடர்புடையது?",
+      options:[
+        "Seafood export unit",
+        "Textile mill",
+        "Steel plant",
+        "Cement factory"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Tamil Nadu 2030-க்குள் textile மற்றும் apparel exports-க்கு வைத்த இலக்கு?",
+      options:[
+        "$11 billion",
+        "$15 billion",
+        "$21 billion",
+        "$31 billion"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Thozhi hostels திட்டத்திற்கு ஒதுக்கப்பட்ட தொகை?",
+      options:[
+        "₹750 crore",
+        "₹1,000 crore",
+        "₹1,250 crore",
+        "₹1,500 crore"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Technical textiles மற்றும் MMF துறைக்கு குறிப்பிடப்பட்ட PLI தொகை?",
+      options:[
+        "₹5,000 crore",
+        "₹8,000 crore",
+        "₹11,000 crore",
+        "₹15,000 crore"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Central Sanskrit University 2026-27-ல் எந்த புதிய B.Tech course-ஐ அறிமுகப்படுத்தியது?",
+      options:[
+        "AI and Data Science",
+        "Civil Engineering",
+        "Biotechnology",
+        "Robotics"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Tamil Nadu textile exports இலக்கு எந்த ஆண்டை நோக்கி நிர்ணயிக்கப்பட்டது?",
+      options:[
+        "2027",
+        "2028",
+        "2030",
+        "2035"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Tiruvallur ammonia leak எந்த முக்கிய அம்சத்தை முன்னிறுத்தியது?",
+      options:[
+        "Industrial safety",
+        "Space research",
+        "Digital banking",
+        "Sports training"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"June Week 5",
+  date:"June 29 – July 5, 2026",
+  questions:[
+
+    {
+      q:"June 29–July 5 காலகட்டத்தில் தமிழ்நாட்டில் முக்கியமாக பேசப்பட்ட துறை எது?",
+      options:[
+        "Education",
+        "Energy",
+        "Governance",
+        "மேற்கண்ட அனைத்தும்"
+      ],
+      answer:3
+    },
+
+    {
+      q:"இந்த காலகட்டத்தில் Gaganyaan தொடர்பான முக்கிய முன்னேற்றம் எந்த துறையைச் சேர்ந்தது?",
+      options:[
+        "Space",
+        "Banking",
+        "Agriculture",
+        "Judiciary"
+      ],
+      answer:0
+    },
+
+    {
+      q:"GST தொடர்பான விவாதங்கள் எந்த துறையைச் சேர்ந்தவை?",
+      options:[
+        "Taxation",
+        "Defence",
+        "Sports",
+        "Environment"
+      ],
+      answer:0
+    },
+
+    {
+      q:"June இறுதி வாரம் முதல் July தொடக்க வாரம் வரை தமிழ்நாட்டில் எந்த நிர்வாக நடவடிக்கை நடைபெற்றது?",
+      options:[
+        "Teacher transfer counselling",
+        "New Parliament election",
+        "Census 2031",
+        "Railway recruitment"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Teacher transfer counselling எந்த கல்வி நிலையை முக்கியமாகச் சார்ந்தது?",
+      options:[
+        "Elementary education",
+        "University education",
+        "Medical education",
+        "Technical education"
+      ],
+      answer:0
+    },
+
+    {
+      q:"இந்த வாரத்தில் food distribution மற்றும் infrastructure போன்றவை எந்த அளவிலான கொள்கைகளுடன் தொடர்புடையவை?",
+      options:[
+        "Union government initiatives",
+        "Only local bodies",
+        "Only private companies",
+        "Only foreign governments"
+      ],
+      answer:0
+    },
+
+    {
+      q:"June 29–July 5 வாரத்தின் முக்கிய theme என்ன?",
+      options:[
+        "Policy implementation",
+        "Only sports",
+        "Only cinema",
+        "Only weather"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+/* ================= JULY ================= */
+
+{
+  title:"July Week 1",
+  date:"July 6 – 12, 2026",
+  questions:[
+
+    {
+      q:"Tamil Nadu State Finance White Paper 2026 எப்போது வெளியிடப்பட்டது?",
+      options:[
+        "July 4",
+        "July 6",
+        "July 8",
+        "July 10"
+      ],
+      answer:1
+    },
+
+    {
+      q:"Tamil Nadu State Finance White Paper முக்கியமாக எதை விளக்கியது?",
+      options:[
+        "Fiscal position",
+        "Sports ranking",
+        "School syllabus",
+        "Weather forecast"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Hitachi Group தமிழ்நாட்டில் அறிவித்த முதலீடு சுமார்?",
+      options:[
+        "₹500 crore",
+        "₹750 crore",
+        "₹1,000 crore",
+        "₹2,000 crore"
+      ],
+      answer:2
+    },
+
+    {
+      q:"RBI July 2026-ல் repo rate-ஐ எவ்வளவு வைத்திருந்தது?",
+      options:[
+        "4.25%",
+        "5.25%",
+        "6.25%",
+        "7.25%"
+      ],
+      answer:1
+    },
+
+    {
+      q:"Green Tamil Nadu Mission-ன் forest/tree cover இலக்கு?",
+      options:[
+        "25%",
+        "30%",
+        "33%",
+        "40%"
+      ],
+      answer:2
+    },
+
+    {
+      q:"2026 Wimbledon ஆண்கள் singles champion யார்?",
+      options:[
+        "Jannik Sinner",
+        "Carlos Alcaraz",
+        "Novak Djokovic",
+        "Alexander Zverev"
+      ],
+      answer:0
+    },
+
+    {
+      q:"2026 Wimbledon பெண்கள் singles champion யார்?",
+      options:[
+        "Linda Noskova",
+        "Iga Swiatek",
+        "Aryna Sabalenka",
+        "Coco Gauff"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"July Week 2",
+  date:"July 13 – 19, 2026",
+  questions:[
+
+    {
+      q:"India–New Zealand உறவு July 2026-ல் எந்த புதிய நிலைக்கு உயர்த்தப்பட்டது?",
+      options:[
+        "Strategic Partnership",
+        "Defence Treaty",
+        "Currency Union",
+        "Customs Union"
+      ],
+      answer:0
+    },
+
+    {
+      q:"India–UK Free Trade Agreement எந்த மாதத்தில் நடைமுறைக்கு வந்தது?",
+      options:[
+        "May",
+        "June",
+        "July",
+        "August"
+      ],
+      answer:2
+    },
+
+    {
+      q:"India–New Zealand agreement எந்த முக்கிய துறையுடன் தொடர்புடையது?",
+      options:[
+        "Trade",
+        "Space tourism",
+        "Cricket",
+        "Railways"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Semiconductor manufacturing எந்த துறையைச் சேர்ந்தது?",
+      options:[
+        "Science & Technology",
+        "Agriculture",
+        "Tourism",
+        "Judiciary"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Free Trade Agreement-ன் முக்கிய நோக்கங்களில் ஒன்று?",
+      options:[
+        "Market access",
+        "Election management",
+        "Forest census",
+        "School examination"
+      ],
+      answer:0
+    },
+
+    {
+      q:"July 13–19 வாரத்தின் முக்கிய strategic theme?",
+      options:[
+        "Trade and technology",
+        "Only sports",
+        "Only culture",
+        "Only tourism"
+      ],
+      answer:0
+    },
+
+    {
+      q:"இந்த வார current affairs-ல் defence modernisation எந்த நாட்டின் பாதுகாப்புடன் தொடர்புடையது?",
+      options:[
+        "India",
+        "Only France",
+        "Only USA",
+        "Only Japan"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"July Week 3",
+  date:"July 20 – 26, 2026",
+  questions:[
+
+    {
+      q:"Tamil Nadu Chief Minister's Breakfast Scheme புதிய பெயர் என்ன?",
+      options:[
+        "Perunthalaivar Kamarajar Breakfast Scheme",
+        "Anna Breakfast Scheme",
+        "Tamil Nadu Nutrition Scheme",
+        "Namma Breakfast Scheme"
+      ],
+      answer:0
+    },
+
+    {
+      q:"இந்த திட்டத்தின் முக்கிய நோக்கம் எதனுடன் தொடர்புடையது?",
+      options:[
+        "School nutrition",
+        "Road construction",
+        "Banking",
+        "Defence"
+      ],
+      answer:0
+    },
+
+    {
+      q:"இந்த திட்டம் எந்த வகுப்பு மாணவர்களுக்கு விரிவுபடுத்தப்படலாம் என தெரிவிக்கப்பட்டது?",
+      options:[
+        "Classes 1–5",
+        "Classes 1–8",
+        "Classes 6–10",
+        "Classes 9–12"
+      ],
+      answer:1
+    },
+
+    {
+      q:"Welfare schemes-ன் முக்கிய நோக்கம்?",
+      options:[
+        "Social development",
+        "Stock trading",
+        "Foreign exchange",
+        "Military training"
+      ],
+      answer:0
+    },
+
+    {
+      q:"July 20–26 வாரத்தில் space technology எந்த நாட்டின் முன்னேற்றத்துடன் தொடர்புடையது?",
+      options:[
+        "India",
+        "Only Canada",
+        "Only Brazil",
+        "Only Egypt"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Archaeology மற்றும் heritage எந்த வகை current affairs?",
+      options:[
+        "Art & Culture",
+        "Banking",
+        "Defence",
+        "Taxation"
+      ],
+      answer:0
+    },
+
+    {
+      q:"இந்த வாரத்தின் முக்கிய policy themes-ல் ஒன்று?",
+      options:[
+        "Human development",
+        "Only cricket",
+        "Only cinema",
+        "Only elections"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"July Week 4",
+  date:"July 27 – August 2, 2026",
+  questions:[
+
+    {
+      q:"2026 Commonwealth Games எங்கு நடைபெற்றது?",
+      options:[
+        "Glasgow",
+        "London",
+        "Delhi",
+        "Birmingham"
+      ],
+      answer:0
+    },
+
+    {
+      q:"2026 CWG-ல் India மொத்தம் எத்தனை medals பெற்றது?",
+      options:[
+        "29",
+        "39",
+        "49",
+        "59"
+      ],
+      answer:1
+    },
+
+    {
+      q:"2026 CWG-ல் India overall எந்த இடத்தைப் பெற்றது?",
+      options:[
+        "2nd",
+        "3rd",
+        "4th",
+        "5th"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Mirabai Chanu எந்த விளையாட்டில் gold வென்றார்?",
+      options:[
+        "Weightlifting",
+        "Boxing",
+        "Wrestling",
+        "Athletics"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Sharmila Dhankar எந்த விளையாட்டில் CWG gold வென்றார்?",
+      options:[
+        "Para athletics",
+        "Swimming",
+        "Badminton",
+        "Archery"
+      ],
+      answer:0
+    },
+
+    {
+      q:"India–Maldives Favara-UPI corridor எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Digital payments",
+        "Railways",
+        "Defence",
+        "Agriculture"
+      ],
+      answer:0
+    },
+
+    {
+      q:"July 2026 Chennai Metro monthly ridership சுமார் எவ்வளவு?",
+      options:[
+        "6.06 crore",
+        "8.06 crore",
+        "10.6 crore",
+        "1.06 crore"
+      ],
+      answer:3
+    }
+
+  ]
+},
+
+/* ================= AUGUST ================= */
+
+{
+  title:"August Week 1",
+  date:"August 3 – 9, 2026",
+  questions:[
+
+    {
+      q:"RBI August 2026 repo rate எவ்வளவு?",
+      options:[
+        "4.75%",
+        "5.25%",
+        "5.75%",
+        "6.25%"
+      ],
+      answer:1
+    },
+
+    {
+      q:"Tamil Nadu 2026–27 Budget எந்த மாதத்தில் தாக்கல் செய்யப்பட்டது?",
+      options:[
+        "July",
+        "August",
+        "September",
+        "October"
+      ],
+      answer:1
+    },
+
+    {
+      q:"Favara-UPI corridor எந்த நாட்டுடன் தொடர்புடையது?",
+      options:[
+        "Maldives",
+        "Bhutan",
+        "Nepal",
+        "Sri Lanka"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Chennai Metro July 2026-ல் என்ன சாதனை படைத்தது?",
+      options:[
+        "Highest monthly ridership",
+        "First underwater train",
+        "First bullet train",
+        "First international route"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Khelo India programme எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Sports",
+        "Banking",
+        "Environment",
+        "Agriculture"
+      ],
+      answer:0
+    },
+
+    {
+      q:"PM-KISAN எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Agriculture",
+        "Defence",
+        "Education",
+        "Transport"
+      ],
+      answer:0
+    },
+
+    {
+      q:"2026 CWG-ல் Tamil Nadu triple jumper Praveen Chithravel எந்த medal வென்றார்?",
+      options:[
+        "Gold",
+        "Silver",
+        "Bronze",
+        "No medal"
+      ],
+      answer:1
+    }
+
+  ]
+},
+
+{
+  title:"August Week 2",
+  date:"August 10 – 16, 2026",
+  questions:[
+
+    {
+      q:"Tribunals Reforms தொடர்பான முக்கிய அமைப்பு எது?",
+      options:[
+        "National Tribunals Commission",
+        "National Election Commission",
+        "National Finance Commission",
+        "National Sports Commission"
+      ],
+      answer:0
+    },
+
+    {
+      q:"India-வில் August 15 எந்த நாளாகக் கொண்டாடப்படுகிறது?",
+      options:[
+        "Republic Day",
+        "Independence Day",
+        "Constitution Day",
+        "National Unity Day"
+      ],
+      answer:1
+    },
+
+    {
+      q:"Parliamentary reforms எந்த துறையைச் சேர்ந்தவை?",
+      options:[
+        "Polity",
+        "Sports",
+        "Agriculture",
+        "Environment"
+      ],
+      answer:0
+    },
+
+    {
+      q:"UPI-powered PosTransfer August 2026-ல் எந்த நாட்டில் கிடைக்கத் தொடங்கியது?",
+      options:[
+        "Qatar",
+        "Japan",
+        "France",
+        "Germany"
+      ],
+      answer:0
+    },
+
+    {
+      q:"PosTransfer எந்த payment system-ஐ பயன்படுத்துகிறது?",
+      options:[
+        "UPI",
+        "SWIFT",
+        "RTGS",
+        "NEFT"
+      ],
+      answer:0
+    },
+
+    {
+      q:"India 7th BRICS ICT Working Group Meeting-ஐ எந்த நகரில் நடத்தியது?",
+      options:[
+        "Pune",
+        "Chennai",
+        "Delhi",
+        "Hyderabad"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Cauvery water issue எந்த இரு மாநிலங்களுடன் முக்கியமாக தொடர்புடையது?",
+      options:[
+        "Tamil Nadu and Karnataka",
+        "Tamil Nadu and Kerala",
+        "Tamil Nadu and Andhra Pradesh",
+        "Tamil Nadu and Telangana"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"August Week 3",
+  date:"August 17 – 23, 2026",
+  questions:[
+
+    {
+      q:"Tamil Nadu milk procurement price எவ்வளவு உயர்த்தப்பட்டது?",
+      options:[
+        "₹39/litre",
+        "₹40/litre",
+        "₹41/litre",
+        "₹42/litre"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Tamil Nadu அரசு third child-க்கு maternity leave எத்தனை நாட்களாக நீட்டித்தது?",
+      options:[
+        "180 days",
+        "240 days",
+        "300 days",
+        "365 days"
+      ],
+      answer:3
+    },
+
+    {
+      q:"India Navy MQ-9B Sea Guardian RPAS எதற்காக lease செய்யப்பட்டது?",
+      options:[
+        "Maritime surveillance",
+        "Agriculture",
+        "Tourism",
+        "School transport"
+      ],
+      answer:0
+    },
+
+    {
+      q:"National Space Day இந்தியாவில் எப்போது அனுசரிக்கப்படுகிறது?",
+      options:[
+        "August 21",
+        "August 23",
+        "August 25",
+        "August 29"
+      ],
+      answer:1
+    },
+
+    {
+      q:"Madras Day 2026 எத்தனையாவது anniversary-ஐ குறித்தது?",
+      options:[
+        "287th",
+        "337th",
+        "387th",
+        "407th"
+      ],
+      answer:2
+    },
+
+    {
+      q:"INS Sudarshini எந்த வகை இந்திய கடற்படை கப்பல்?",
+      options:[
+        "Sail training ship",
+        "Aircraft carrier",
+        "Submarine",
+        "Destroyer"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Cauvery water release directions எந்த அமைப்புடன் தொடர்புடையது?",
+      options:[
+        "CWMA",
+        "NITI Aayog",
+        "SEBI",
+        "UPSC"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"August Week 4",
+  date:"August 24 – 30, 2026",
+  questions:[
+
+    {
+      q:"Tamil Nadu அரசு newborn babies-க்காக அறிவித்த gold ring scheme பெயர்?",
+      options:[
+        "Thaimaman Thanga Mothiram",
+        "Pon Kuzhandhai",
+        "Makkal Pon Thittam",
+        "Namma Gold Scheme"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Thaimaman Thanga Mothiram திட்டத்தில் gold ring எடை?",
+      options:[
+        "0.5 gram",
+        "1 gram",
+        "2 gram",
+        "5 gram"
+      ],
+      answer:1
+    },
+
+    {
+      q:"India-வின் first non-GMO high-expansion popcorn maize hybrid seed எந்த மாநிலத்தில் launch செய்யப்பட்டது?",
+      options:[
+        "Andhra Pradesh",
+        "Tamil Nadu",
+        "Punjab",
+        "Gujarat"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Piyush Goyal Japan-ல் எந்த துறைகளில் roundtable நடத்தினார்?",
+      options:[
+        "Semiconductors and AI",
+        "Agriculture and fisheries",
+        "Tourism and cinema",
+        "Textiles only"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Talabira II & III எந்த resource-உடன் தொடர்புடையது?",
+      options:[
+        "Coal",
+        "Gold",
+        "Iron",
+        "Lithium"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Garbhini Mitra course-ஐ எந்த நிறுவனம் launch செய்தது?",
+      options:[
+        "AIIA",
+        "AIIMS",
+        "ISRO",
+        "DRDO"
+      ],
+      answer:0
+    },
+
+    {
+      q:"August 24–30 வாரத்தில் முக்கியமான constitutional institution எது?",
+      options:[
+        "Election Commission of India",
+        "UPSC",
+        "RBI",
+        "CAG"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"August Week 5",
+  date:"August 31 – September 6, 2026",
+  questions:[
+
+    {
+      q:"India Q1 FY27 real GDP growth எவ்வளவு?",
+      options:[
+        "6.8%",
+        "7.2%",
+        "7.8%",
+        "8.4%"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Legal Metrology (Indian Standard Time) Rules எந்த ஆண்டு?",
+      options:[
+        "2024",
+        "2025",
+        "2026",
+        "2027"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Tamil Nadu Kathmandu-வில் எந்த நோக்கத்திற்காக nodal team அமைத்தது?",
+      options:[
+        "Flood-hit Tamil tourists",
+        "Sports delegation",
+        "Trade mission",
+        "Film festival"
+      ],
+      answer:0
+    },
+
+    {
+      q:"India Q1 FY27 GDP data எந்த அமைப்பால் வெளியிடப்பட்டது?",
+      options:[
+        "MoSPI",
+        "RBI",
+        "SEBI",
+        "NITI Aayog"
+      ],
+      answer:0
+    },
+
+    {
+      q:"September தொடக்க current affairs-ல் முக்கியமான disaster management issue?",
+      options:[
+        "Floods in Nepal",
+        "Volcano in India",
+        "Earthquake in Chennai",
+        "Cyclone in Delhi"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Legal Metrology Rules எந்த விஷயத்தை formalise செய்தது?",
+      options:[
+        "Indian Standard Time",
+        "GST rate",
+        "Election date",
+        "School timings"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Tamil Nadu nodal team எங்கு அமைக்கப்பட்டது?",
+      options:[
+        "Kathmandu",
+        "Colombo",
+        "Dhaka",
+        "Thimphu"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+/* ================= SEPTEMBER ================= */
+
+{
+  title:"September Week 1",
+  date:"September 7 – 13, 2026",
+  questions:[
+
+    {
+      q:"September 2026 current affairs-ல் முக்கியமான ISRO launch எது?",
+      options:[
+        "EOS-05",
+        "Chandrayaan-4",
+        "Aditya-2",
+        "RISAT-10"
+      ],
+      answer:0
+    },
+
+    {
+      q:"EOS-05 எந்த launch vehicle மூலம் ஏவப்பட்டது?",
+      options:[
+        "PSLV",
+        "GSLV-F17",
+        "SSLV",
+        "LVM3"
+      ],
+      answer:1
+    },
+
+    {
+      q:"EOS-05 launch site எது?",
+      options:[
+        "Sriharikota",
+        "Mahendragiri",
+        "Thumba",
+        "Bengaluru"
+      ],
+      answer:0
+    },
+
+    {
+      q:"EOS-05 எந்த வகை satellite?",
+      options:[
+        "Earth observation",
+        "Navigation",
+        "Communication",
+        "Weather only"
+      ],
+      answer:0
+    },
+
+    {
+      q:"EOS-05 satellite எடை சுமார்?",
+      options:[
+        "1,367 kg",
+        "2,367 kg",
+        "3,367 kg",
+        "4,367 kg"
+      ],
+      answer:1
+    },
+
+    {
+      q:"September 2026 current affairs-ல் முக்கிய space organisation?",
+      options:[
+        "ISRO",
+        "DRDO",
+        "SEBI",
+        "ECI"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Sriharikota எந்த மாநிலத்தில் உள்ளது?",
+      options:[
+        "Tamil Nadu",
+        "Andhra Pradesh",
+        "Kerala",
+        "Karnataka"
+      ],
+      answer:1
+    }
+
+  ]
+},
+
+{
+  title:"September Week 2",
+  date:"September 14 – 20, 2026",
+  questions:[
+
+    {
+      q:"20th Asian Games 2026 எங்கு நடைபெற்றது?",
+      options:[
+        "Aichi-Nagoya, Japan",
+        "Seoul, South Korea",
+        "Beijing, China",
+        "Jakarta, Indonesia"
+      ],
+      answer:0
+    },
+
+    {
+      q:"2026 Asian Games-ல் சுமார் எத்தனை நாடுகள் பங்கேற்றன?",
+      options:[
+        "35",
+        "40",
+        "45",
+        "50"
+      ],
+      answer:2
+    },
+
+    {
+      q:"2026 Asian Games-ல் சுமார் எத்தனை athletes பங்கேற்றனர்?",
+      options:[
+        "7,000",
+        "9,000",
+        "11,000",
+        "15,000"
+      ],
+      answer:2
+    },
+
+    {
+      q:"2026 Asian Games-ல் gold medals எண்ணிக்கை?",
+      options:[
+        "369",
+        "419",
+        "469",
+        "519"
+      ],
+      answer:2
+    },
+
+    {
+      q:"Tirupati laddu case எந்த விஷயத்துடன் தொடர்புடையது?",
+      options:[
+        "Adulterated ghee",
+        "Temple land",
+        "Water dispute",
+        "Gold smuggling"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Vandalur Zoo-க்கு கொண்டு வரப்பட்ட விலங்கு எது?",
+      options:[
+        "Tiger",
+        "Lion",
+        "Elephant",
+        "Leopard"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Supreme Court panel captive elephants எந்த மாநிலத்திலிருந்து தொடர்புடையது?",
+      options:[
+        "Assam",
+        "Kerala",
+        "Karnataka",
+        "Odisha"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"September Week 3",
+  date:"September 21 – 27, 2026",
+  questions:[
+
+    {
+      q:"September 2026-ல் India climate discussions எந்த முக்கிய துறையுடன் தொடர்புடையது?",
+      options:[
+        "Clean energy",
+        "Cinema",
+        "Cricket",
+        "Tourism"
+      ],
+      answer:0
+    },
+
+    {
+      q:"NGT international environment conference எந்த துறையை முன்னிறுத்தியது?",
+      options:[
+        "Environment",
+        "Banking",
+        "Sports",
+        "Education"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Public sector jobs gender discrimination case-ல் compensation எவ்வளவு?",
+      options:[
+        "₹8 lakh",
+        "₹10 lakh",
+        "₹12 lakh",
+        "₹15 lakh"
+      ],
+      answer:2
+    },
+
+    {
+      q:"India clean-energy push எந்த broad policy goal-உடன் தொடர்புடையது?",
+      options:[
+        "Climate action",
+        "Election reform",
+        "Judicial reform",
+        "Sports policy"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Asian Games 2026 எந்த நாட்டில் நடைபெற்றது?",
+      options:[
+        "Japan",
+        "China",
+        "India",
+        "Thailand"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Tirupati laddu issue-ல் குறிப்பிடப்பட்ட முக்கிய பொருள்?",
+      options:[
+        "Ghee",
+        "Milk powder",
+        "Rice",
+        "Sugar"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Environment-related judicial institution?",
+      options:[
+        "National Green Tribunal",
+        "Election Commission",
+        "Finance Commission",
+        "UPSC"
+      ],
+      answer:0
+    }
+
+  ]
+},
+
+{
+  title:"September Week 4",
+  date:"September 28 – October 4, 2026",
+  questions:[
+
+    {
+      q:"Poompuhar excavations எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Archaeology",
+        "Banking",
+        "Defence",
+        "Agriculture"
+      ],
+      answer:0
+    },
+
+    {
+      q:"இந்தியாவின் UNESCO Tentative List-ல் September 2026-ல் என்ன சேர்க்கப்பட்டது?",
+      options:[
+        "New heritage sites",
+        "New sports teams",
+        "New banks",
+        "New airports"
+      ],
+      answer:0
+    },
+
+    {
+      q:"UPSC September 2026-ல் எத்தனை ஆண்டுகளை நிறைவு செய்தது?",
+      options:[
+        "75",
+        "90",
+        "100",
+        "125"
+      ],
+      answer:2
+    },
+
+    {
+      q:"India-வின் முதல் LNG-powered train எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Railways",
+        "Aviation",
+        "Shipping",
+        "Road transport"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Guwahati-ல் புதிய ISRO facility எந்த துறையைச் சேர்ந்தது?",
+      options:[
+        "Space technology",
+        "Banking",
+        "Agriculture",
+        "Judiciary"
+      ],
+      answer:0
+    },
+
+    {
+      q:"Green Energy Corridor Phase-III எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Renewable energy transmission",
+        "Road construction",
+        "Railway recruitment",
+        "School education"
+      ],
+      answer:0
+    },
+
+    {
+      q:"CAFE-III framework எப்போது effective ஆகிறது?",
+      options:[
+        "April 2026",
+        "April 2027",
+        "April 2028",
+        "April 2029"
+      ],
+      answer:1
+    }
+
+  ]
+},
+
+/* ================= OCTOBER ================= */
+
+{
+  title:"October Week 1",
+  date:"October 5 – 8, 2026",
+  questions:[
+
+    {
+      q:"October 6, 2026 அன்று TNPSC எந்த தேர்வுக்கான notification வெளியிட்டது?",
+      options:[
+        "Group 4",
+        "Group 1",
+        "Group 2",
+        "Group 5"
+      ],
+      answer:0
+    },
+
+    {
+      q:"2026 TNPSC Group 4 தேர்வுக்கான அறிவிப்பில் குறிப்பிடப்பட்ட முக்கிய பதவி?",
+      options:[
+        "VAO",
+        "IAS",
+        "IPS",
+        "Judge"
+      ],
+      answer:0
+    },
+
+    {
+      q:"TNPSC Group 4 தேர்வின் குறைந்தபட்ச கல்வித் தகுதி பொதுவாக?",
+      options:[
+        "8th Standard",
+        "10th Standard",
+        "12th Standard",
+        "Degree"
+      ],
+      answer:1
+    },
+
+    {
+      q:"October 2026 current affairs-ல் India 2036 Olympics bid-ல் எந்த நகரம் முக்கியமாக குறிப்பிடப்பட்டது?",
+      options:[
+        "Ahmedabad",
+        "Chennai",
+        "Mumbai",
+        "Kolkata"
+      ],
+      answer:0
+    },
+
+    {
+      q:"India among how many bidders for the 2036 Olympics?",
+      options:[
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      answer:2
+    },
+
+    {
+      q:"October 7, 2026 India–Ghana discussions எந்த துறையுடன் தொடர்புடையது?",
+      options:[
+        "Foreign relations",
+        "Cricket",
+        "Railways",
+        "School education"
+      ],
+      answer:0
+    },
+
+    {
+      q:"October 7, 2026 Rajnath Singh launched a ₹19,000 crore project தொடர்புடையது?",
+      options:[
+        "Indian Navy fleet support ship",
+        "Metro rail",
+        "School buildings",
+        "Food storage"
+      ],
+      answer:0
+    }
+
+  ]
+}
+
+];
+
+
+/* ================= QUIZ ENGINE ================= */
+
+let currentWeek = 0;
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+/* Create Week Buttons */
+
+const weeksDiv = document.getElementById("weeks");
+
+weeks.forEach((week,index)=>{
+
+  const button = document.createElement("button");
+
+  button.className = "week-btn";
+
+  button.innerHTML =
+    "📰 " + week.title +
+    "<br><small>" + week.date + "</small>";
+
+  button.onclick = () => startQuiz(index);
+
+  weeksDiv.appendChild(button);
+
+});
+
+
+function startQuiz(index){
+
+  currentWeek = index;
+  currentQuestion = 0;
+  score = 0;
+
+  document.getElementById("weeks").style.display="none";
+  document.getElementById("quiz").style.display="block";
+  document.getElementById("result").style.display="none";
+
+  showQuestion();
+}
+
+
+function showQuestion(){
+
+  answered=false;
+
+  const q =
+    weeks[currentWeek].questions[currentQuestion];
+
+  document.getElementById("qno").textContent =
+    weeks[currentWeek].title +
+    " | Question " +
+    (currentQuestion+1) +
+    " / " +
+    weeks[currentWeek].questions.length;
+
+  document.getElementById("score").textContent =
+    "Score: " + score;
+
+  document.getElementById("question").textContent =
+    q.q;
+
+  document.getElementById("feedback").textContent="";
+
+  document.getElementById("next").style.display="none";
+
+  const optionsDiv =
+    document.getElementById("options");
+
+  optionsDiv.innerHTML="";
+
+  q.options.forEach((option,index)=>{
+
+    const button =
+      document.createElement("button");
+
+    button.className="option";
+
+    button.textContent =
+      String.fromCharCode(65+index) +
+      ". " +
+      option;
+
+    button.onclick=()=>{
+      checkAnswer(index,button);
+    };
+
+    optionsDiv.appendChild(button);
+
+  });
+}
+
+
+function checkAnswer(selected,button){
+
+  if(answered) return;
+
+  answered=true;
+
+  const correct =
+    weeks[currentWeek]
+    .questions[currentQuestion]
+    .answer;
+
+  const allButtons =
+    document.querySelectorAll(".option");
+
+  if(selected===correct){
+
+    score++;
+
+    button.classList.add("correct");
+
+    document.getElementById("feedback")
+      .textContent="✅ Correct Answer!";
+
+  }else{
+
+    button.classList.add("wrong");
+
+    allButtons[correct]
+      .classList.add("correct");
+
+    document.getElementById("feedback")
+      .textContent="❌ Wrong Answer!";
+  }
+
+  document.getElementById("score").textContent =
+    "Score: " + score;
+
+  document.getElementById("next").style.display =
+    "inline-block";
+}
+
+
+function nextQuestion(){
+
+  currentQuestion++;
+
+  if(
+    currentQuestion <
+    weeks[currentWeek].questions.length
+  ){
+
+    showQuestion();
+
+  }else{
+
+    showResult();
+
+  }
+}
+
+
+function showResult(){
+
+  document.getElementById("quiz")
+    .style.display="none";
+
+  document.getElementById("result")
+    .style.display="block";
+
+  const total =
+    weeks[currentWeek].questions.length;
+
+  document.getElementById("final")
+    .textContent =
+    score + " / " + total;
+
+  let msg="";
+
+  if(score===total){
+
+    msg="🔥 Excellent! அந்த Week முழுவதும் perfect!";
+
+  }else if(score>=5){
+
+    msg="👏 Very Good! இன்னும் கொஞ்சம் revise பண்ணு!";
+
+  }else if(score>=3){
+
+    msg="👍 Good! அந்த வார Current Affairs-ஐ மீண்டும் படி!";
+
+  }else{
+
+    msg="📚 பரவாயில்லை! Restart பண்ணி மீண்டும் முயற்சி செய்!";
+  }
+
+  document.getElementById("message")
+    .textContent=msg;
+}
+
+
+function restartQuiz(){
+
+  score=0;
+  currentQuestion=0;
+
+  document.getElementById("result")
+    .style.display="none";
+
+  document.getElementById("quiz")
+    .style.display="block";
+
+  showQuestion();
+}
+
+
+function backToWeeks(){
+
+  document.getElementById("quiz")
+    .style.display="none";
+
+  document.getElementById("result")
+    .style.display="none";
+
+  document.getElementById("weeks")
+    .style.display="grid";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>செய்யுள் | TNPSC QUIZ HUB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Noto Sans Tamil", "Latha", Arial, sans-serif;
+            background: linear-gradient(135deg, #f8fbff, #eef6ff);
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(135deg, #0f172a, #1d4ed8);
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-size: 34px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 16px;
+            font-weight: 700;
+            opacity: 0.95;
+        }
+
+        /* BACK BUTTON */
+
+        .back-area {
+            max-width: 1100px;
+            margin: 25px auto 0;
+            padding: 0 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: white;
+            color: #1d4ed8;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 900;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            background: #1d4ed8;
+            color: white;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 25px 0 30px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            color: #0f172a;
+            font-weight: 900;
+        }
+
+        .section-title p {
+            margin-top: 8px;
+            color: #475569;
+            font-weight: 700;
+        }
+
+        /* CLASS GRID */
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .class-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #172033;
+            border: 1px solid #dbeafe;
+            box-shadow: 0 8px 25px rgba(15,23,42,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+        }
+
+        .class-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(37,99,235,0.18);
+        }
+
+        .class-number {
+            font-size: 42px;
+            font-weight: 1000;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .class-card h3 {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .class-card p {
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .start {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 900;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #eaf2ff;
+            color: #334155;
+            font-weight: 700;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+            .class-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .class-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📖 செய்யுள்</h1>
+        <p>TNPSC QUIZ HUB • வகுப்பு வாரியான தமிழ் செய்யுள் பயிற்சி</p>
+    </header>
+
+    <div class="back-area">
+        <a href="tamil.html" class="back-btn">
+            ← தமிழ் பகுதிக்கு செல்ல
+        </a>
+    </div>
+
+    <main class="container">
+
+        <div class="section-title">
+            <h2>வகுப்பைத் தேர்வு செய்யுங்கள்</h2>
+            <p>
+                6ஆம் வகுப்பு முதல் 12ஆம் வகுப்பு வரை
+                பாடநூல் அடிப்படையிலான செய்யுள் பயிற்சி
+            </p>
+        </div>
+
+        <div class="class-grid">
+
+            <!-- 6th -->
+
+            <a href="6th-tamil-seyyul.html" class="class-card">
+                <div class="class-number">06</div>
+                <h3>6ஆம் வகுப்பு தமிழ்</h3>
+                <p>செய்யுள் பாடங்கள்</p>
+                <span class="start">பாடங்களைப் பார்க்க →</span>
+            </a>
+
+
+            <!-- 7th -->
+
+            <a href="7th-tamil-seyyul.html" class="class-card">
+                <div class="class-number">07</div>
+                <h3>7ஆம் வகுப்பு தமிழ்</h3>
+                <p>செய்யுள் பாடங்கள்</p>
+                <span class="start">பாடங்களைப் பார்க்க →</span>
+            </a>
+
+
+            <!-- 8th -->
+
+            <a href="8th-tamil-seyyul.html" class="class-card">
+                <div class="class-number">08</div>
+                <h3>8ஆம் வகுப்பு தமிழ்</h3>
+                <p>செய்யுள் பாடங்கள்</p>
+                <span class="start">பாடங்களைப் பார்க்க →</span>
+            </a>
+
+
+            <!-- 9th -->
+
+            <a href="9th-tamil-seyyul.html" class="class-card">
+                <div class="class-number">09</div>
+                <h3>9ஆம் வகுப்பு தமிழ்</h3>
+                <p>செய்யுள் பாடங்கள்</p>
+                <span class="start">பாடங்களைப் பார்க்க →</span>
+            </a>
+
+
+            <!-- 10th -->
+
+            <a href="10th-tamil-seyyul.html" class="class-card">
+                <div class="class-number">10</div>
+                <h3>10ஆம் வகுப்பு தமிழ்</h3>
+                <p>செய்யுள் பாடங்கள்</p>
+                <span class="start">பாடங்களைப் பார்க்க →</span>
+            </a>
+
+
+            <!-- 11th -->
+
+            <a href="11th-tamil-seyyul.html" class="class-card">
+                <div class="class-number">11</div>
+                <h3>11ஆம் வகுப்பு தமிழ்</h3>
+                <p>செய்யுள் பாடங்கள்</p>
+                <span class="start">பாடங்களைப் பார்க்க →</span>
+            </a>
+
+
+            <!-- 12th -->
+
+            <a href="12th-tamil-seyyul.html" class="class-card">
+                <div class="class-number">12</div>
+                <h3>12ஆம் வகுப்பு தமிழ்</h3>
+                <p>செய்யுள் பாடங்கள்</p>
+                <span class="start">பாடங்களைப் பார்க்க →</span>
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer>
+        © 2026 TNPSC QUIZ HUB • Learn • Practice • Test • Improve
+    </footer>
+
+</body>
+</html>

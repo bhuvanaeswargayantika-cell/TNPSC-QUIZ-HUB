@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Science - TNPSC QUIZ HUB</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,"Noto Sans Tamil",sans-serif;
+    background:#f3f7fb;
+    color:#172033;
+}
+
+header{
+    background:linear-gradient(135deg,#102a43,#1d4ed8);
+    color:white;
+    text-align:center;
+    padding:28px 15px;
+}
+
+header h1{
+    margin:0;
+    font-size:30px;
+}
+
+header p{
+    margin:8px 0 0;
+    letter-spacing:2px;
+    font-size:14px;
+}
+
+.back-home{
+    display:inline-block;
+    margin:18px;
+    padding:10px 18px;
+    background:white;
+    color:#1d4ed8;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.title h2{
+    color:#102a43;
+}
+
+.title p{
+    color:#64748b;
+}
+
+/* SET BUTTONS */
+
+.sets{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:15px;
+}
+
+.set-btn{
+    border:none;
+    padding:20px 15px;
+    border-radius:15px;
+    background:white;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+    color:#172033;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    transition:.2s;
+}
+
+.set-btn:hover{
+    transform:translateY(-3px);
+    background:#eaf1ff;
+}
+
+.set-btn small{
+    display:block;
+    margin-top:7px;
+    color:#64748b;
+}
+
+/* QUIZ */
+
+.quiz-box{
+    display:none;
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
+
+.quiz-top{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+    font-weight:bold;
+}
+
+.question-number{
+    color:#1d4ed8;
+}
+
+.score{
+    color:#15803d;
+}
+
+.question{
+    font-size:21px;
+    font-weight:bold;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.option{
+    width:100%;
+    display:block;
+    padding:15px;
+    margin:9px 0;
+    border:2px solid #dbe2ea;
+    border-radius:12px;
+    background:#f8fafc;
+    text-align:left;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#eef4ff;
+}
+
+.option.correct{
+    background:#dcfce7;
+    border-color:#16a34a;
+    color:#166534;
+}
+
+.option.wrong{
+    background:#fee2e2;
+    border-color:#dc2626;
+    color:#991b1b;
+}
+
+.feedback{
+    min-height:30px;
+    margin:15px 0;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.next-btn,
+.back-btn,
+.restart-btn{
+    border:none;
+    padding:12px 20px;
+    margin:5px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.next-btn{
+    background:#1d4ed8;
+    color:white;
+}
+
+.back-btn{
+    background:#64748b;
+    color:white;
+}
+
+.restart-btn{
+    background:#15803d;
+    color:white;
+}
+
+/* RESULT */
+
+.result-box{
+    display:none;
+    background:white;
+    text-align:center;
+    padding:35px 20px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
+
+.result-box h2{
+    color:#102a43;
+}
+
+.final-score{
+    font-size:42px;
+    font-weight:bold;
+    color:#1d4ed8;
+    margin:15px;
+}
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:24px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .quiz-box{
+        padding:18px;
+    }
+
+    .option{
+        font-size:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>TNPSC QUIZ HUB</h1>
+    <p>LEARN • PRACTICE • TEST • IMPROVE</p>
+</header>
+
+<a href="index.html" class="back-home">← HOME</a>
+
+<div class="container">
+
+    <div class="title">
+        <h2>🔬 அறிவியல் – SCIENCE</h2>
+        <p>இயற்பியல் • வேதியியல் • உயிரியல்</p>
+    </div>
+
+
+    <!-- SET BUTTONS -->
+
+    <div class="sets" id="sets">
+
+        <button class="set-btn" onclick="startQuiz(0)">
+            இயற்பியல்
+            <small>1 – 25</small>
+        </button>
+
+        <button class="set-btn" onclick="startQuiz(1)">
+            இயற்பியல்
+            <small>26 – 50</small>
+        </button>
+
+        <button class="set-btn" onclick="startQuiz(2)">
+            வேதியியல்
+            <small>51 – 75</small>
+        </button>
+
+        <button class="set-btn" onclick="startQuiz(3)">
+            வேதியியல்
+            <small>76 – 100</small>
+        </button>
+
+        <button class="set-btn" onclick="startQuiz(4)">
+            உயிரியல்
+            <small>101 – 125</small>
+        </button>
+
+        <button class="set-btn" onclick="startQuiz(5)">
+            உயிரியல்
+            <small>126 – 150</small>
+        </button>
+
+    </div>
+
+
+    <!-- QUIZ BOX -->
+
+    <div class="quiz-box" id="quizBox">
+
+        <div class="quiz-top">
+
+            <div class="question-number" id="questionNumber"></div>
+
+            <div class="score" id="scoreText">
+                Score: 0
+            </div>
+
+        </div>
+
+        <div class="question" id="question"></div>
+
+        <div id="options"></div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button
+            class="next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()"
+            style="display:none;">
+            Next →
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="backToSets()">
+            ← Back
+        </button>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div class="result-box" id="resultBox">
+
+        <h2>🎉 Test Completed!</h2>
+
+        <div class="final-score" id="finalScore"></div>
+
+        <p id="resultMessage"></p>
+
+        <button
+            class="restart-btn"
+            onclick="restartQuiz()">
+            🔄 Restart
+        </button>
+
+        <button
+            class="back-btn"
+            onclick="backToSets()">
+            ← Back to Sets
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   SCIENCE QUESTION BANK
+   6 SETS × 25 QUESTIONS
+========================================== */
+
+const questionSets = [
+
+/* ==========================================
+   PHYSICS 1–25
+========================================== */
+
+[
+{
+q:"விசையின் SI அலகு என்ன?",
+options:["ஜூல்","நியூட்டன்","வாட்","பாஸ்கல்"],
+answer:1
+},
+{
+q:"வேகத்தின் SI அலகு என்ன?",
+options:["m/s","kg","N","J"],
+answer:0
+},
+{
+q:"ஒளியின் வேகம் வெற்றிடத்தில் சுமார்?",
+options:["3 × 10⁸ m/s","3 × 10⁶ m/s","3 × 10⁴ m/s","3 × 10² m/s"],
+answer:0
+},
+{
+q:"மின்சாரத்தின் SI அலகு என்ன?",
+options:["வோல்ட்","ஆம்பியர்","ஓம்","வாட்"],
+answer:1
+},
+{
+q:"மின்னழுத்தத்தின் SI அலகு?",
+options:["வோல்ட்","ஆம்பியர்","கூலோம்","ஜூல்"],
+answer:0
+},
+{
+q:"மின்தடையின் SI அலகு?",
+options:["வாட்","ஓம்","வோல்ட்","ஆம்பியர்"],
+answer:1
+},
+{
+q:"புவியீர்ப்பு விசையால் பொருள் கீழே விழுவது எதனால்?",
+options:["காந்த விசை","புவியீர்ப்பு விசை","மின்விசை","உராய்வு"],
+answer:1
+},
+{
+q:"வேலையின் SI அலகு என்ன?",
+options:["நியூட்டன்","ஜூல்","வாட்","பாஸ்கல்"],
+answer:1
+},
+{
+q:"திறனின் SI அலகு?",
+options:["ஜூல்","வாட்","நியூட்டன்","ஓம்"],
+answer:1
+},
+{
+q:"ஒலியின் வேகம் எந்த ஊடகத்தில் அதிகம்?",
+options:["வெற்றிடம்","வாயு","திரவம்","திடப்பொருள்"],
+answer:3
+},
+{
+q:"வெற்றிடத்தில் ஒலி பரவுமா?",
+options:["ஆம்","இல்லை","சில நேரங்களில்","மிக மெதுவாக"],
+answer:1
+},
+{
+q:"ஒளி எந்த வகை அலை?",
+options:["இயந்திர அலை","மின்காந்த அலை","நீரலை","ஒலி அலை"],
+answer:1
+},
+{
+q:"கண்ணாடியில் ஒளி திரும்புவது?",
+options:["ஒளிவிலகல்","எதிரொளிப்பு","சிதறல்","உறிஞ்சுதல்"],
+answer:1
+},
+{
+q:"வெள்ளை ஒளி பல நிறங்களாகப் பிரிவது?",
+options:["Reflection","Dispersion","Absorption","Conduction"],
+answer:1
+},
+{
+q:"வெப்பநிலையை அளக்கும் கருவி?",
+options:["பாரோமீட்டர்","தெர்மாமீட்டர்","அம்மீட்டர்","வோல்ட்மீட்டர்"],
+answer:1
+},
+{
+q:"காற்றழுத்தத்தை அளக்கும் கருவி?",
+options:["பாரோமீட்டர்","தெர்மாமீட்டர்","ஹைக்ரோமீட்டர்","அம்மீட்டர்"],
+answer:0
+},
+{
+q:"மின்னோட்டத்தை அளக்கும் கருவி?",
+options:["வோல்ட்மீட்டர்","அம்மீட்டர்","பாரோமீட்டர்","கால்வனோமீட்டர்"],
+answer:1
+},
+{
+q:"மின்னழுத்தத்தை அளக்கும் கருவி?",
+options:["அம்மீட்டர்","வோல்ட்மீட்டர்","பாரோமீட்டர்","தெர்மாமீட்டர்"],
+answer:1
+},
+{
+q:"உராய்வு விசை எதற்கு எதிராக செயல்படும்?",
+options:["இயக்கத்திற்கு","ஒளிக்கு","வெப்பத்திற்கு","ஒலிக்கு"],
+answer:0
+},
+{
+q:"ஒரு பொருளின் இயக்கத்தை மாற்றும் காரணம்?",
+options:["விசை","நிறம்","வெப்பம் மட்டும்","ஒளி மட்டும்"],
+answer:0
+},
+{
+q:"சூரியனிடமிருந்து பூமிக்கு வரும் ஆற்றல்?",
+options:["அணு ஆற்றல்","சூரிய ஆற்றல்","ஒலி ஆற்றல்","வேதி ஆற்றல்"],
+answer:1
+},
+{
+q:"மின்சார ஆற்றலை இயந்திர ஆற்றலாக மாற்றுவது?",
+options:["மோட்டார்","ஜெனரேட்டர்","மின்கலம்","மின்தடை"],
+answer:0
+},
+{
+q:"இயந்திர ஆற்றலை மின்சார ஆற்றலாக மாற்றுவது?",
+options:["மோட்டார்","ஜெனரேட்டர்","மின்தடை","சுவிட்ச்"],
+answer:1
+},
+{
+q:"காந்தத்தின் ஒரே துருவங்கள்?",
+options:["ஈர்க்கும்","விலக்கும்","எப்போதும் இணையும்","நிலையாக இருக்கும்"],
+answer:1
+},
+{
+q:"பூமியின் இயற்கை துணைக்கோள்?",
+options:["செவ்வாய்","சந்திரன்","வெள்ளி","சூரியன்"],
+answer:1
+}
+],
+
+
+/* ==========================================
+   PHYSICS 26–50
+========================================== */
+
+[
+{
+q:"அடர்த்தியின் SI அலகு?",
+options:["kg/m³","kg/m²","N/m","J/m"],
+answer:0
+},
+{
+q:"அழுத்தத்தின் SI அலகு?",
+options:["ஜூல்","பாஸ்கல்","வாட்","நியூட்டன்"],
+answer:1
+},
+{
+q:"திரவ அழுத்தம் எதனுடன் அதிகரிக்கும்?",
+options:["ஆழம்","நிறம்","ஒளி","ஒலி"],
+answer:0
+},
+{
+q:"மிதவை விசை தொடர்புடைய விஞ்ஞானி?",
+options:["ஆர்க்கிமிடீஸ்","நியூட்டன்","ஃபாரடே","ஐன்ஸ்டீன்"],
+answer:0
+},
+{
+q:"நியூட்டனின் முதல் விதி எதைப் பற்றியது?",
+options:["நிலைமம்","ஆற்றல்","வெப்பம்","ஒளி"],
+answer:0
+},
+{
+q:"நியூட்டனின் இரண்டாவது விதி எதனுடன் தொடர்புடையது?",
+options:["F = ma","E = mc²","V = IR","P = VI"],
+answer:0
+},
+{
+q:"நியூட்டனின் மூன்றாவது விதி?",
+options:["ஒவ்வொரு செயலுக்கும் சமமான எதிர்செயல் உண்டு","ஆற்றல் அழியாது","பொருள் நிலைத்திருக்கும்","ஒளி நேர்கோட்டில் செல்லும்"],
+answer:0
+},
+{
+q:"இயக்க ஆற்றல் எதனால் ஏற்படும்?",
+options:["இயக்கம்","நிறம்","வெப்பநிலை மட்டும்","அழுத்தம் மட்டும்"],
+answer:0
+},
+{
+q:"நிலை ஆற்றல் எதனால் ஏற்படுகிறது?",
+options:["நிலை/இடம்","நிறம்","ஒலி","ஒளி"],
+answer:0
+},
+{
+q:"ஆற்றலின் SI அலகு?",
+options:["ஜூல்","நியூட்டன்","வாட்","பாஸ்கல்"],
+answer:0
+},
+{
+q:"ஒரு வினாடியில் செய்யப்படும் வேலை?",
+options:["திறன்","விசை","அழுத்தம்","வேகம்"],
+answer:0
+},
+{
+q:"மின்சுற்றை திறக்கவும் மூடவும் பயன்படுவது?",
+options:["சுவிட்ச்","மின்தடை","மோட்டார்","மின்கலம்"],
+answer:0
+},
+{
+q:"மின்கலத்தில் சேமிக்கப்படும் ஆற்றல்?",
+options:["வேதி ஆற்றல்","ஒலி ஆற்றல்","ஒளி ஆற்றல்","இயந்திர ஆற்றல்"],
+answer:0
+},
+{
+q:"செம்பு நல்லது எதற்கு?",
+options:["மின்கடத்தி","மின்காப்பி","வெப்பத் தடுப்பான்","ஒலி உறிஞ்சுபவர்"],
+answer:0
+},
+{
+q:"ரப்பர் பொதுவாக?",
+options:["மின்கடத்தி","மின்காப்பி","காந்தம்","உலோகம்"],
+answer:1
+},
+{
+q:"வெப்பம் எந்த திசையில் இயல்பாக செல்கிறது?",
+options:["குளிரிலிருந்து சூடுக்கு","சூட்டிலிருந்து குளிருக்கு","இரண்டிலும் இல்லை","வெற்றிடத்திலிருந்து"],
+answer:1
+},
+{
+q:"வெப்ப பரிமாற்றத்தின் ஒரு முறை?",
+options:["கடத்தல்","விளையாட்டு","ஒலி","நிறம்"],
+answer:0
+},
+{
+q:"திரவங்களில் வெப்பப் பரிமாற்றத்தின் முக்கிய முறை?",
+options:["சலனம்","கடத்தல் மட்டும்","ஒளிவிலகல்","எதிரொளிப்பு"],
+answer:0
+},
+{
+q:"சூரிய வெப்பம் பூமியை அடைவது?",
+options:["கதிர்வீச்சு","கடத்தல்","சலனம்","உராய்வு"],
+answer:0
+},
+{
+q:"லென்ஸ் எதனுடன் தொடர்புடையது?",
+options:["ஒளியியல்","வேதியியல்","உயிரியல்","புவியியல்"],
+answer:0
+},
+{
+q:"பெரிதாக்கிக் கண்ணாடியில் பயன்படுத்தப்படுவது?",
+options:["குவிலென்ஸ்","குழிலென்ஸ்","சமதளக் கண்ணாடி","பிரிசம் மட்டும்"],
+answer:0
+},
+{
+q:"மனிதக் கண் எந்த வகை லென்ஸைப் போன்றது?",
+options:["குவிலென்ஸ்","குழிலென்ஸ்","சமதளக் கண்ணாடி","பிரிசம்"],
+answer:0
+},
+{
+q:"ஒலியின் அதிர்வெண்ணின் SI அலகு?",
+options:["ஹெர்ட்ஸ்","ஜூல்","வாட்","நியூட்டன்"],
+answer:0
+},
+{
+q:"மனிதர்கள் பொதுவாக கேட்கும் அதிர்வெண் வரம்பு?",
+options:["20 Hz–20 kHz","2–20 Hz","200–2000 Hz","2–200 kHz"],
+answer:0
+},
+{
+q:"குறைந்த அதிர்வெண் ஒலி?",
+options:["Infrasound","Ultrasound","Audible sound","Echo"],
+answer:0
+}
+],
+
+
+/* ==========================================
+   CHEMISTRY 51–75
+========================================== */
+
+[
+{
+q:"நீரின் வேதியியல் வாய்ப்பாடு?",
+options:["CO₂","H₂O","O₂","NaCl"],
+answer:1
+},
+{
+q:"ஆக்சிஜனின் குறியீடு?",
+options:["O","Ox","Og","Os"],
+answer:0
+},
+{
+q:"ஹைட்ரஜனின் குறியீடு?",
+options:["H","He","Hg","Ho"],
+answer:0
+},
+{
+q:"கார்பன் குறியீடு?",
+options:["Ca","C","Co","Cr"],
+answer:1
+},
+{
+q:"சோடியத்தின் குறியீடு?",
+options:["S","So","Na","N"],
+answer:2
+},
+{
+q:"தங்கத்தின் வேதியியல் குறியீடு?",
+options:["Ag","Au","Gd","Go"],
+answer:1
+},
+{
+q:"வெள்ளியின் குறியீடு?",
+options:["Ag","Au","Al","Ar"],
+answer:0
+},
+{
+q:"இரும்பின் குறியீடு?",
+options:["Ir","Fe","F","Fr"],
+answer:1
+},
+{
+q:"உப்பின் பொதுவான வேதியியல் பெயர்?",
+options:["Sodium chloride","Calcium carbonate","Potassium nitrate","Sodium hydroxide"],
+answer:0
+},
+{
+q:"NaCl என்பது?",
+options:["சோடியம் குளோரைடு","சோடியம் ஹைட்ராக்சைடு","கால்சியம் ஆக்சைடு","பொட்டாசியம் குளோரைடு"],
+answer:0
+},
+{
+q:"அமிலத்தின் pH பொதுவாக?",
+options:["7-க்கு குறைவு","7","7-க்கு அதிகம்","14-க்கு மேல்"],
+answer:0
+},
+{
+q:"காரத்தின் pH பொதுவாக?",
+options:["7-க்கு குறைவு","7","7-க்கு அதிகம்","0"],
+answer:2
+},
+{
+q:"நடுநிலை pH?",
+options:["0","5","7","14"],
+answer:2
+},
+{
+q:"நீல லிட்மஸ் அமிலத்தில்?",
+options:["சிவப்பாகும்","நீலமாகவே இருக்கும்","பச்சையாகும்","மஞ்சளாகும்"],
+answer:0
+},
+{
+q:"சிவப்பு லிட்மஸ் காரத்தில்?",
+options:["நீலமாகும்","சிவப்பாகவே இருக்கும்","மஞ்சளாகும்","கருப்பாகும்"],
+answer:0
+},
+{
+q:"அமிலம் + காரம் → ?",
+options:["உப்பு + நீர்","ஆக்சிஜன்","ஹைட்ரஜன் மட்டும்","கார்பன்"],
+answer:0
+},
+{
+q:"இந்த வினை என்ன எனப்படும்?",
+options:["நடுநிலைப்படுத்தல்","ஆக்சிகரிப்பு","ஒடுக்கம்","பதங்கமாதல்"],
+answer:0
+},
+{
+q:"காற்றில் அதிகமாக உள்ள வாயு?",
+options:["ஆக்சிஜன்","நைட்ரஜன்","கார்பன் டை ஆக்சைடு","ஹைட்ரஜன்"],
+answer:1
+},
+{
+q:"காற்றில் ஆக்சிஜன் சுமார்?",
+options:["21%","50%","78%","1%"],
+answer:0
+},
+{
+q:"காற்றில் நைட்ரஜன் சுமார்?",
+options:["21%","78%","10%","1%"],
+answer:1
+},
+{
+q:"கார்பன் டை ஆக்சைடு வாய்ப்பாடு?",
+options:["CO","CO₂","C₂O","C₂O₂"],
+answer:1
+},
+{
+q:"தாவரங்கள் ஒளிச்சேர்க்கையில் பயன்படுத்தும் வாயு?",
+options:["O₂","CO₂","N₂","H₂"],
+answer:1
+},
+{
+q:"துருப்பிடித்தல் எந்த உலோகத்தில் பொதுவாக ஏற்படும்?",
+options:["இரும்பு","தங்கம்","வெள்ளி","பிளாட்டினம்"],
+answer:0
+},
+{
+q:"இரும்பு துருப்பிடிக்க முக்கியமாக தேவைப்படுவது?",
+options:["ஆக்சிஜன் மற்றும் நீர்","நைட்ரஜன் மட்டும்","ஹைட்ரஜன் மட்டும்","சூரிய ஒளி மட்டும்"],
+answer:0
+},
+{
+q:"துருப்பிடித்தலைத் தடுக்கும் ஒரு முறை?",
+options:["Painting","Heating மட்டும்","Breaking","Freezing"],
+answer:0
+}
+],
+
+
+/* ==========================================
+   CHEMISTRY 76–100
+========================================== */
+
+[
+{
+q:"அணுவின் மையப்பகுதி?",
+options:["எலக்ட்ரான்","நியூக்ளியஸ்","ஆர்பிட்","அயனி"],
+answer:1
+},
+{
+q:"எதிர்மின்னூட்டம் கொண்ட துகள்?",
+options:["புரோட்டான்","நியூட்ரான்","எலக்ட்ரான்","அணுக்கரு"],
+answer:2
+},
+{
+q:"நேர்மின்னூட்டம் கொண்ட துகள்?",
+options:["எலக்ட்ரான்","புரோட்டான்","நியூட்ரான்","அணுக்கரு மட்டும்"],
+answer:1
+},
+{
+q:"மின்னூட்டமற்ற துகள்?",
+options:["புரோட்டான்","எலக்ட்ரான்","நியூட்ரான்","அயனி"],
+answer:2
+},
+{
+q:"தனிமத்தின் மிகச் சிறிய அலகு?",
+options:["அணு","மூலக்கூறு","செல்","திசு"],
+answer:0
+},
+{
+q:"இரண்டு அல்லது அதற்கு மேற்பட்ட அணுக்கள் இணைந்தது?",
+options:["மூலக்கூறு","திசு","செல்","உலோகம்"],
+answer:0
+},
+{
+q:"தனிம அட்டவணையை உருவாக்கியவர்?",
+options:["மென்டலீவ்","நியூட்டன்","டார்வின்","ஃபாரடே"],
+answer:0
+},
+{
+q:"Periodic Table-ல் தனிமங்கள் எதன் அடிப்படையில் வரிசைப்படுத்தப்படுகின்றன?",
+options:["அணு எண்","நிறம்","அடர்த்தி மட்டும்","கொதிநிலை மட்டும்"],
+answer:0
+},
+{
+q:"தங்கம் எந்த வகை தனிமம்?",
+options:["உலோகம்","அலோகம்","வாயு","அமிலம்"],
+answer:0
+},
+{
+q:"ஆக்சிஜன் எந்த வகை தனிமம்?",
+options:["உலோகம்","அலோகம்","உலோகக்கலவை","உப்பு"],
+answer:1
+},
+{
+q:"அறை வெப்பநிலையில் திரவமாக இருக்கும் உலோகம்?",
+options:["இரும்பு","பாதரசம்","செம்பு","அலுமினியம்"],
+answer:1
+},
+{
+q:"பாதரசத்தின் குறியீடு?",
+options:["Hg","H","He","Mg"],
+answer:0
+},
+{
+q:"சமையல் சோடாவின் வேதியியல் பெயர்?",
+options:["Sodium bicarbonate","Sodium chloride","Calcium oxide","Potassium chloride"],
+answer:0
+},
+{
+q:"Baking soda வாய்ப்பாடு?",
+options:["NaCl","NaHCO₃","CaCO₃","NaOH"],
+answer:1
+},
+{
+q:"சலவைச் சோடா?",
+options:["Sodium carbonate","Sodium chloride","Calcium carbonate","Potassium nitrate"],
+answer:0
+},
+{
+q:"சுண்ணாம்புக் கல் முக்கியமாக?",
+options:["Calcium carbonate","Sodium chloride","Potassium chloride","Iron oxide"],
+answer:0
+},
+{
+q:"Calcium carbonate வாய்ப்பாடு?",
+options:["CaCO₃","CaCl₂","CaO","CO₂"],
+answer:0
+},
+{
+q:"நீர் கொதிக்கும் வெப்பநிலை சாதாரண அழுத்தத்தில்?",
+options:["0°C","50°C","100°C","150°C"],
+answer:2
+},
+{
+q:"நீர் உறையும் வெப்பநிலை?",
+options:["0°C","10°C","50°C","100°C"],
+answer:0
+},
+{
+q:"திடப்பொருள் நேரடியாக வாயுவாக மாறுவது?",
+options:["உருகுதல்","பதங்கமாதல்","ஆவியாகுதல்","உறைதல்"],
+answer:1
+},
+{
+q:"திரவம் வாயுவாக மாறுவது?",
+options:["ஆவியாகுதல்","உறைதல்","உருகுதல்","பதங்கமாதல்"],
+answer:0
+},
+{
+q:"வாயு திரவமாக மாறுவது?",
+options:["ஒடுக்கம்","உருகுதல்","உறைதல்","பதங்கமாதல்"],
+answer:0
+},
+{
+q:"திரவம் திடமாக மாறுவது?",
+options:["உறைதல்","ஆவியாகுதல்","உருகுதல்","ஒடுக்கம்"],
+answer:0
+},
+{
+q:"திடப்பொருள் திரவமாக மாறுவது?",
+options:["உருகுதல்","உறைதல்","ஒடுக்கம்","பதங்கமாதல்"],
+answer:0
+},
+{
+q:"வேதியியல் மாற்றத்தின் ஒரு உதாரணம்?",
+options:["இரும்பு துருப்பிடித்தல்","பனி உருகுதல்","நீர் கொதித்தல்","காகிதம் மடித்தல்"],
+answer:0
+}
+],
+
+
+/* ==========================================
+   BIOLOGY 101–125
+========================================== */
+
+[
+{
+q:"உயிரினங்களின் அடிப்படை அலகு?",
+options:["திசு","செல்","உறுப்பு","அணு"],
+answer:1
+},
+{
+q:"தாவர செல்களில் ஒளிச்சேர்க்கை நடைபெறும் பகுதி?",
+options:["மைட்டோகாண்ட்ரியா","குளோரோபிளாஸ்ட்","நியூக்ளியஸ்","ரைபோசோம்"],
+answer:1
+},
+{
+q:"செல்லின் கட்டுப்பாட்டு மையம்?",
+options:["நியூக்ளியஸ்","மைட்டோகாண்ட்ரியா","வெற்றிடம்","செல் சுவர்"],
+answer:0
+},
+{
+q:"செல்லின் ஆற்றல் நிலையம் எனப்படுவது?",
+options:["ரைபோசோம்","மைட்டோகாண்ட்ரியா","நியூக்ளியஸ்","குளோரோபிளாஸ்ட்"],
+answer:1
+},
+{
+q:"தாவரங்களில் உணவு தயாரிக்கும் செயல்?",
+options:["சுவாசம்","ஒளிச்சேர்க்கை","செரிமானம்","வியர்வை"],
+answer:1
+},
+{
+q:"ஒளிச்சேர்க்கைக்கு தேவையான முக்கிய வாயு?",
+options:["CO₂","O₂","N₂","H₂"],
+answer:0
+},
+{
+q:"ஒளிச்சேர்க்கையில் வெளியிடப்படும் வாயு?",
+options:["CO₂","O₂","N₂","H₂"],
+answer:1
+},
+{
+q:"தாவரங்களில் நீர் கடத்தும் திசு?",
+options:["Phloem","Xylem","Cambium","Epidermis"],
+answer:1
+},
+{
+q:"தாவரங்களில் உணவு கடத்தும் திசு?",
+options:["Xylem","Phloem","Cork","Cambium"],
+answer:1
+},
+{
+q:"இலைகளில் வாயுப் பரிமாற்றம் நடைபெறும் அமைப்பு?",
+options:["Stomata","Root hair","Xylem","Phloem"],
+answer:0
+},
+{
+q:"வேர் முக்கியமாக எதை உறிஞ்சுகிறது?",
+options:["நீர் மற்றும் கனிமங்கள்","ஆக்சிஜன் மட்டும்","சர்க்கரை","புரதம்"],
+answer:0
+},
+{
+q:"மனித உடலின் மிகப்பெரிய உறுப்பு?",
+options:["இதயம்","தோல்","கல்லீரல்","நுரையீரல்"],
+answer:1
+},
+{
+q:"மனித உடலில் இரத்தத்தை பம்ப் செய்வது?",
+options:["நுரையீரல்","இதயம்","சிறுநீரகம்","கல்லீரல்"],
+answer:1
+},
+{
+q:"மனித உடலில் சுவாசத்திற்கான முக்கிய உறுப்பு?",
+options:["இதயம்","நுரையீரல்","வயிறு","சிறுநீரகம்"],
+answer:1
+},
+{
+q:"இரத்தத்தில் ஆக்சிஜனை எடுத்துச் செல்லும் செல்கள்?",
+options:["வெள்ளை இரத்த அணுக்கள்","சிவப்பு இரத்த அணுக்கள்","தகடணுக்கள்","நரம்பு செல்கள்"],
+answer:1
+},
+{
+q:"நோய் எதிர்ப்பு பணியில் முக்கிய பங்கு வகிப்பவை?",
+options:["RBC","WBC","Platelets","Plasma மட்டும்"],
+answer:1
+},
+{
+q:"இரத்தம் உறைவதில் உதவுவது?",
+options:["RBC","WBC","Platelets","Neurons"],
+answer:2
+},
+{
+q:"மனித உடலின் கட்டுப்பாட்டு மையம்?",
+options:["இதயம்","மூளை","நுரையீரல்","கல்லீரல்"],
+answer:1
+},
+{
+q:"மூளை எந்த அமைப்பின் முக்கிய உறுப்பு?",
+options:["செரிமான அமைப்பு","நரம்பு அமைப்பு","சுவாச அமைப்பு","இனப்பெருக்க அமைப்பு"],
+answer:1
+},
+{
+q:"மனித உடலில் உணவு செரிமானம் முதலில் எங்கு தொடங்குகிறது?",
+options:["வயிறு","வாய்","சிறுகுடல்","பெருங்குடல்"],
+answer:1
+},
+{
+q:"உணவு செரிமானத்தில் முக்கிய உறுப்பு?",
+options:["சிறுகுடல்","நுரையீரல்","இதயம்","மூளை"],
+answer:0
+},
+{
+q:"சிறுநீரை உருவாக்கும் உறுப்பு?",
+options:["இதயம்","சிறுநீரகம்","நுரையீரல்","கல்லீரல்"],
+answer:1
+},
+{
+q:"மனித உடலில் பொதுவாக எத்தனை சிறுநீரகங்கள் உள்ளன?",
+options:["1","2","3","4"],
+answer:1
+},
+{
+q:"மனித உடலின் எலும்புக்கூட்டின் முக்கிய பணி?",
+options:["உடலைத் தாங்குதல்","உணவு செரித்தல்","இரத்தம் பம்ப் செய்தல்","சுவாசித்தல்"],
+answer:0
+},
+{
+q:"விட்டமின் D உருவாக உதவும் இயற்கை ஆதாரம்?",
+options:["சூரிய ஒளி","இருள்","உப்பு","நீர்"],
+answer:0
+}
+],
+
+
+/* ==========================================
+   BIOLOGY 126–150
+========================================== */
+
+[
+{
+q:"விட்டமின் C குறைபாட்டால் ஏற்படும் நோய்?",
+options:["ஸ்கர்வி","ரிக்கெட்ஸ்","பெரிபெரி","இரத்தச்சோகை"],
+answer:0
+},
+{
+q:"விட்டமின் D குறைபாட்டால் குழந்தைகளில்?",
+options:["ரிக்கெட்ஸ்","ஸ்கர்வி","பெரிபெரி","நைட் பிளைண்ட்னஸ்"],
+answer:0
+},
+{
+q:"விட்டமின் A குறைபாட்டால்?",
+options:["இரவு குருட்டுத்தன்மை","ஸ்கர்வி","ரிக்கெட்ஸ்","பெரிபெரி"],
+answer:0
+},
+{
+q:"விட்டமின் B1 குறைபாட்டால்?",
+options:["பெரிபெரி","ஸ்கர்வி","ரிக்கெட்ஸ்","கோய்டர்"],
+answer:0
+},
+{
+q:"அயோடின் குறைபாட்டால் ஏற்படுவது?",
+options:["கோய்டர்","ஸ்கர்வி","ரிக்கெட்ஸ்","பெரிபெரி"],
+answer:0
+},
+{
+q:"இரத்தத்தில் சர்க்கரை அளவை கட்டுப்படுத்தும் ஹார்மோன்?",
+options:["இன்சுலின்","அட்ரினலின்","தைராக்சின்","ஈஸ்ட்ரோஜன்"],
+answer:0
+},
+{
+q:"இன்சுலின் சுரக்கும் உறுப்பு?",
+options:["கணையம்","கல்லீரல்","சிறுநீரகம்","இதயம்"],
+answer:0
+},
+{
+q:"தைராக்சின் ஹார்மோன் சுரக்கும் சுரப்பி?",
+options:["தைராய்டு","கணையம்","பிட்யூட்டரி","அட்ரினல்"],
+answer:0
+},
+{
+q:"மனித உடலில் இரத்தத்தை வடிகட்ட உதவும் உறுப்பு?",
+options:["சிறுநீரகம்","இதயம்","மூளை","நுரையீரல்"],
+answer:0
+},
+{
+q:"கல்லீரலின் முக்கிய பணி ஒன்றாகும்?",
+options:["நச்சுப் பொருட்களை நீக்க உதவுதல்","ஒலி உருவாக்குதல்","பார்வை வழங்குதல்","எலும்பு உருவாக்குதல்"],
+answer:0
+},
+{
+q:"நோய்களை ஏற்படுத்தும் நுண்ணுயிரிகள்?",
+options:["நோய்க்கிருமிகள்","வைட்டமின்கள்","ஹார்மோன்கள்","என்சைம்கள்"],
+answer:0
+},
+{
+q:"தடுப்பூசியின் முக்கிய நோக்கம்?",
+options:["நோய் எதிர்ப்பு சக்தியை உருவாக்குதல்","உடல் எடையை அதிகரித்தல்","உயரத்தை அதிகரித்தல்","பசியை அதிகரித்தல்"],
+answer:0
+},
+{
+q:"Antibiotics பொதுவாக எதற்கு எதிராகப் பயன்படுகின்றன?",
+options:["பாக்டீரியா","வைரஸ் அனைத்தும்","தண்ணீர்","வைட்டமின் குறைபாடு"],
+answer:0
+},
+{
+q:"மலேரியாவை ஏற்படுத்தும் உயிரினம்?",
+options:["Plasmodium","Bacteria","Fungus","Algae"],
+answer:0
+},
+{
+q:"மலேரியா பரப்பும் கொசு?",
+options:["பெண் Anopheles","ஆண் Anopheles","Aedes மட்டும்","Culex மட்டும்"],
+answer:0
+},
+{
+q:"Dengue பரப்பும் முக்கிய கொசு?",
+options:["Aedes","Anopheles","Culex","Housefly"],
+answer:0
+},
+{
+q:"AIDS-ஐ ஏற்படுத்தும் வைரஸ்?",
+options:["HIV","HBV","H1N1","Dengue virus"],
+answer:0
+},
+{
+q:"DNA என்பதன் விரிவாக்கம்?",
+options:[
+"Deoxyribonucleic Acid",
+"Dynamic Nuclear Acid",
+"Double Nitrogen Acid",
+"Deoxygenated Nucleic Atom"
+],
+answer:0
+},
+{
+q:"மரபணுவின் அடிப்படை அலகு?",
+options:["Gene","Cell","Tissue","Organ"],
+answer:0
+},
+{
+q:"உயிரினங்களின் வகைப்பாட்டியல் ஆய்வு?",
+options:["Taxonomy","Ecology","Physiology","Anatomy"],
+answer:0
+},
+{
+q:"சூழலியல் என்பது?",
+options:[
+"உயிரினங்களுக்கும் சூழலுக்கும் இடையிலான தொடர்பு",
+"உடலின் எலும்புகள்",
+"வேதியியல் மாற்றங்கள்",
+"வானியல் ஆய்வு"
+],
+answer:0
+},
+{
+q:"உணவுச் சங்கிலியின் முதல் நிலை பொதுவாக?",
+options:["உற்பத்தியாளர்கள்","நுகர்வோர்","சிதைப்பவர்கள்","மாமிச உண்ணிகள்"],
+answer:0
+},
+{
+q:"பசுமைத் தாவரங்கள் எந்த வகையைச் சேர்ந்தவை?",
+options:["உற்பத்தியாளர்கள்","முதன்மை நுகர்வோர்","சிதைப்பவர்கள்","ஒட்டுண்ணிகள்"],
+answer:0
+},
+{
+q:"சுற்றுச்சூழலில் இறந்த உயிரினப் பொருட்களை சிதைப்பவர்கள்?",
+options:["சிதைப்பவர்கள்","உற்பத்தியாளர்கள்","முதன்மை நுகர்வோர்","வேட்டையாடிகள்"],
+answer:0
+},
+{
+q:"உயிரினப் பல்வகைமை என்பதன் பொருள்?",
+options:[
+"உயிரினங்களின் பல்வேறு தன்மை",
+"ஒரே ஒரு உயிரினம்",
+"நீர் மட்டும்",
+"மண் மட்டும்"
+],
+answer:0
+}
+
+]
+
+];
+
+
+/* ==========================================
+   VARIABLES
+========================================== */
+
+let currentSet = 0;
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+/* ==========================================
+   START QUIZ
+========================================== */
+
+function startQuiz(setIndex){
+
+    currentSet = setIndex;
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("sets").style.display = "none";
+
+    document.getElementById("quizBox").style.display = "block";
+
+    document.getElementById("resultBox").style.display = "none";
+
+    showQuestion();
+}
+
+
+/* ==========================================
+   SHOW QUESTION
+========================================== */
+
+function showQuestion(){
+
+    answered = false;
+
+    const question =
+        questionSets[currentSet][currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " / 25";
+
+    document.getElementById("scoreText").textContent =
+        "Score: " + score;
+
+    document.getElementById("question").textContent =
+        question.q;
+
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("nextBtn").style.display =
+        "none";
+
+    const optionsDiv =
+        document.getElementById("options");
+
+    optionsDiv.innerHTML = "";
+
+    question.options.forEach(function(option,index){
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(65 + index) +
+            ". " +
+            option;
+
+        button.onclick = function(){
+
+            checkAnswer(index,button);
+
+        };
+
+        optionsDiv.appendChild(button);
+
+    });
+}
+
+
+/* ==========================================
+   CHECK ANSWER
+========================================== */
+
+function checkAnswer(selectedIndex,selectedButton){
+
+    if(answered){
+        return;
+    }
+
+    answered = true;
+
+    const correctIndex =
+        questionSets[currentSet][currentQuestion].answer;
+
+    const allButtons =
+        document.querySelectorAll(".option");
+
+    if(selectedIndex === correctIndex){
+
+        score++;
+
+        selectedButton.classList.add("correct");
+
+        document.getElementById("feedback").textContent =
+            "✅ Correct Answer!";
+
+    }
+    else{
+
+        selectedButton.classList.add("wrong");
+
+        allButtons[correctIndex].classList.add("correct");
+
+        document.getElementById("feedback").textContent =
+            "❌ Wrong Answer!";
+
+    }
+
+    document.getElementById("scoreText").textContent =
+        "Score: " + score;
+
+    document.getElementById("nextBtn").style.display =
+        "inline-block";
+}
+
+
+/* ==========================================
+   NEXT QUESTION
+========================================== */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+    if(currentQuestion < 25){
+
+        showQuestion();
+
+    }
+    else{
+
+        showResult();
+
+    }
+}
+
+
+/* ==========================================
+   SHOW RESULT
+========================================== */
+
+function showResult(){
+
+    document.getElementById("quizBox").style.display =
+        "none";
+
+    document.getElementById("resultBox").style.display =
+        "block";
+
+    document.getElementById("finalScore").textContent =
+        score + " / 25";
+
+    let message = "";
+
+    if(score >= 23){
+
+        message =
+            "🔥 Excellent! Science preparation super!";
+
+    }
+    else if(score >= 18){
+
+        message =
+            "👏 Very Good! இன்னும் கொஞ்சம் practice பண்ணு!";
+
+    }
+    else if(score >= 13){
+
+        message =
+            "👍 Good! இன்னும் revise பண்ணினால் score improve ஆகும்!";
+
+    }
+    else{
+
+        message =
+            "📚 பரவாயில்லை! மீண்டும் test பண்ணு!";
+
+    }
+
+    document.getElementById("resultMessage").textContent =
+        message;
+}
+
+
+/* ==========================================
+   RESTART
+========================================== */
+
+function restartQuiz(){
+
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("resultBox").style.display =
+        "none";
+
+    document.getElementById("quizBox").style.display =
+        "block";
+
+    showQuestion();
+}
+
+
+/* ==========================================
+   BACK TO SETS
+========================================== */
+
+function backToSets(){
+
+    document.getElementById("quizBox").style.display =
+        "none";
+
+    document.getElementById("resultBox").style.display =
+        "none";
+
+    document.getElementById("sets").style.display =
+        "grid";
+}
+
+</script>
+
+</body>
+</html>
